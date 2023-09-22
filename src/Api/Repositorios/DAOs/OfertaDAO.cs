@@ -68,4 +68,9 @@ public class OfertaDAO
         GarantidoPeloFGC = garantidoPeloFGC;
         Descricao = descricao;
     }
+
+    public override string ToString()
+    {
+        return "a";
+    }
 }

@@ -59,9 +59,16 @@ public class OfertaDatabase
         database.Add(oferta);
     }
 
-    public List<OfertaDAO> Ofertas()
+    public List<string> Ofertas()
     {
-        return database;
+        List<string> ofertaStrings = new List<string>();
+
+        foreach (var oferta in database)
+        {
+            ofertaStrings.Add(oferta.ToString());
+        }
+
+        return ofertaStrings;
     }
 }
 
