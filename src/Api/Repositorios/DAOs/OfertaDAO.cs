@@ -1,7 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace CrudOfertas.Api.Repositorios.DAOs
 {
     public class OfertaDAO
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Esta anotação indica que o valor será gerado automaticamente (serial)
         public int ID { get; set; }
         public decimal PorcentagemEmissao { get; set; }
         public decimal PorcentagemDistribuicao { get; set; }
@@ -28,8 +32,7 @@ namespace CrudOfertas.Api.Repositorios.DAOs
         public DateTime DataAtualizacao { get; set; }
         public bool Aprovada { get; set; }
 
-        public OfertaDAO() { }  // Construtor vazio padrão
-
+        public OfertaDAO() { }  
         public OfertaDAO(
             decimal porcentagemEmissao,
             decimal porcentagemDistribuicao,
