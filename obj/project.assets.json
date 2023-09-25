@@ -474,9 +474,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\t60811\\Desktop\\CSHARP\\CRUDOFERTAS\\PROJETO-CRUD-C#.csproj",
-      "projectName": "PROJETO-CRUD-C#",
-      "projectPath": "C:\\Users\\t60811\\Desktop\\CSHARP\\CRUDOFERTAS\\PROJETO-CRUD-C#.csproj",
+      "projectUniqueName": "C:\\Users\\t60811\\Desktop\\CSHARP\\CRUDOFERTAS\\crud-ofertas.csproj",
+      "projectName": "crud-ofertas",
+      "projectPath": "C:\\Users\\t60811\\Desktop\\CSHARP\\CRUDOFERTAS\\crud-ofertas.csproj",
       "packagesPath": "C:\\Users\\t60811\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\t60811\\Desktop\\CSHARP\\CRUDOFERTAS\\obj\\",
       "projectStyle": "PackageReference",

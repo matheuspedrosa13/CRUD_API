@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using CrudOfertas.Api.Infraestrutura; // Importe o namespace do OfertaDatabase
+using CrudOfertas.Api.Infraestrutura;
+using CrudOfertas.Api.Repositorios.DAOs;
 
 namespace CrudOfertas.Api.Controllers
 {
@@ -7,12 +8,18 @@ namespace CrudOfertas.Api.Controllers
     [Route("api/[controller]")]
     public class OfertaController : ControllerBase
     {
-        private readonly OfertaDatabase ofertaDatabase; 
 
-        public OfertaController(OfertaDatabase ofertaDatabase)
+
+        [HttpGet("ofertas")]
+        public ActionResult<IEnumerable<OfertaDAO>> GetOfertas()
         {
-            this.ofertaDatabase = ofertaDatabase;
+            var ofertas = OfertaDatabase.ObterOfertas();
+            Console.WriteLine(ofertas);
+            return Ok(ofertas);
         }
+    }
+}
+
 
         //OkResult: Representa uma resposta HTTP 200 (OK).
         //JsonResult: Permite retornar um objeto serializado como JSON.
@@ -22,12 +29,3 @@ namespace CrudOfertas.Api.Controllers
         //BadRequestResult: Indica uma resposta HTTP 400 (solicitação inválida).
         //UnauthorizedResult: Indica uma resposta HTTP 401 (não autorizado) e assim por diante.
         //IActionResult: Retorna o que vier para ele
-
-        [HttpGet]
-        public IActionResult PegarOfertas()
-        {
-            var ofertas = ofertaDatabase.Ofertas();
-            return new JsonResult(ofertas); // Retorna as ofertas em formato JSON
-        }
-    }
-}

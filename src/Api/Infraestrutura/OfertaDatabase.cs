@@ -1,8 +1,8 @@
 namespace CrudOfertas.Api.Infraestrutura;
 using CrudOfertas.Api.Repositorios.DAOs;
-public class OfertaDatabase
+public static class OfertaDatabase
 {
-    private List<OfertaDAO> database = new List<OfertaDAO>
+    private static List<OfertaDAO> database = new List<OfertaDAO>
     {
         new OfertaDAO
         (
@@ -54,21 +54,14 @@ public class OfertaDatabase
         )
     };
 
-    public void AdicionarOferta(OfertaDAO oferta)
+    public static void AdicionarOferta(OfertaDAO oferta)
     {
         database.Add(oferta);
     }
 
-    public List<string> Ofertas()
+    public static List<OfertaDAO> ObterOfertas()
     {
-        List<string> ofertaStrings = new List<string>();
-
-        foreach (var oferta in database)
-        {
-            ofertaStrings.Add(oferta.ToString());
-        }
-
-        return ofertaStrings;
+        return database;
     }
 }
 
