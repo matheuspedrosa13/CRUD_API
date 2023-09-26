@@ -1,10 +1,54 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace CrudOfertas.Api.Repositorios.Implementacoes;
-public class OfertaRepository
+using CrudOfertas.Api.Repositorios.DAOs;
+using CrudOfertas.Api.Infraestrutura;
+using CrudOfertas.Api.Repositorios.Interfaces;
+public class OfertaRepository  : IOfertaRepository
 {
-    
-}
+        private readonly List<OfertaDAO> _ofertas;
+
+        public OfertaRepository()
+        {
+            _ofertas = OfertaDatabase.ObterOfertas();
+        }
+
+        public List<OfertaDAO> ObterTodasOfertas()
+        {
+            return _ofertas;
+        }
+
+        public OfertaDAO ObterOfertaPorId(int id)
+        {
+            return _ofertas.FirstOrDefault(o => o.ID == id);
+        }
+
+        public void AdicionarOferta(OfertaDAO oferta)
+        {
+            oferta.ID = _ofertas.Count + 1;
+            _ofertas.Add(oferta);
+        }
+
+        public void AtualizarOferta(OfertaDAO oferta)
+        {
+            var ofertaExistente = _ofertas.FirstOrDefault(o => o.ID == oferta.ID);
+            if (ofertaExistente != null)
+            {
+                // Atualize os campos necessários da oferta existente
+                ofertaExistente.PorcentagemEmissao = oferta.PorcentagemEmissao;
+                ofertaExistente.PorcentagemDistribuicao = oferta.PorcentagemDistribuicao;
+                ofertaExistente.TaxaEmissao = oferta.TaxaEmissao;
+                // ... (atualize os outros campos)
+
+                // Atualize a data de atualização
+                ofertaExistente.DataAtualizacao = DateTime.Now;
+            }
+        }
+
+        public void RemoverOferta(int id)
+        {
+            var ofertaExistente = _ofertas.FirstOrDefault(o => o.ID == id);
+            if (ofertaExistente != null)
+            {
+                _ofertas.Remove(ofertaExistente);
+            }
+        }
+    }

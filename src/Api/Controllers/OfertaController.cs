@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using CrudOfertas.Api.Infraestrutura;
 using CrudOfertas.Api.Repositorios.DAOs;
+using CrudOfertas.Api.Servicos.Interfaces;
 
 namespace CrudOfertas.Api.Controllers
 {
@@ -8,14 +9,67 @@ namespace CrudOfertas.Api.Controllers
     [Route("api/[controller]")]
     public class OfertaController : ControllerBase
     {
+        private readonly IOfertaService _ofertaService;
 
+        public OfertaController(IOfertaService ofertaService)
+        {
+            _ofertaService = ofertaService;
+        }
 
-        [HttpGet("ofertas")]
+        [HttpGet("TodasOfertas")]
         public ActionResult<IEnumerable<OfertaDAO>> GetOfertas()
         {
-            var ofertas = OfertaDatabase.ObterOfertas();
+            var ofertas = _ofertaService.ObterTodasOfertas();
             Console.WriteLine(ofertas);
+
             return Ok(ofertas);
+        }
+
+        [HttpGet("ofertas/{id}")]
+        public ActionResult<OfertaDAO> GetOfertaPorId(int id)
+        {
+            var oferta = _ofertaService.ObterOfertaPorId(id);
+            if (oferta == null)
+            {
+                return NotFound();
+            }
+            return Ok(oferta);
+        }
+
+        [HttpPost("ofertas")]
+        public ActionResult AdicionarOferta(OfertaDAO oferta)
+        {
+            try
+            {
+                _ofertaService.AdicionarOferta(oferta);
+                return CreatedAtAction(nameof(GetOfertaPorId), new { id = oferta.ID }, oferta);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message); // Retorna HTTP 400 com a mensagem de erro se a oferta for inválida.
+            }
+        }
+
+        [HttpPut("ofertas/{id}")]
+        public ActionResult AtualizarOferta(int id, OfertaDAO oferta)
+        {
+            oferta.ID = id; // Define o ID da oferta com base no parâmetro da rota.
+            try
+            {
+                _ofertaService.AtualizarOferta(oferta);
+                return NoContent(); // Retorna HTTP 204 (Sem conteúdo) se a atualização for bem-sucedida.
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message); // Retorna HTTP 400 com a mensagem de erro se a oferta for inválida.
+            }
+        }
+
+        [HttpDelete("ofertas/{id}")]
+        public ActionResult RemoverOferta(int id)
+        {
+            _ofertaService.RemoverOferta(id);
+            return NoContent(); // Retorna HTTP 204 (Sem conteúdo) se a remoção for bem-sucedida.
         }
     }
 }

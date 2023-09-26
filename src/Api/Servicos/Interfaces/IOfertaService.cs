@@ -1,11 +1,12 @@
-using CrudOfertas.Api.Servicos.DTOs;
-
+using CrudOfertas.Api.Repositorios.DAOs;
 namespace CrudOfertas.Api.Servicos.Interfaces;
 
 public interface IOfertaService
 {
-    List<OfertaDTO> ObterTodasOfertas();
-    OfertaDTO ObterOfertaPorId(int id);
-    void AdicionarOferta(OfertaDTO oferta);
-    
+    List<OfertaDAO> ObterTodasOfertas();
+    OfertaDAO ObterOfertaPorId(int id);
+    void AdicionarOferta(OfertaDAO oferta);
+    void AtualizarOferta(OfertaDAO oferta);
+    void RemoverOferta(int id);
+    bool ValidarOferta(OfertaDAO oferta);
 }
