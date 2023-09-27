@@ -24,50 +24,11 @@ namespace CrudOfertas.Api.Servicos.DTOs
         public bool GarantidoPeloFGC { get; set; }
         public string Descricao { get; set; }
 
-        public string DescricaoOferta => $"{NomeTitulo} ({Indexador})";
+        public string DescricaoOferta{ get; set; }
 
-        public string DescricaoLiquidez => Liquidez ? "Diária" : "No vencimento";
+        public string DescricaoLiquidez{ get; set; }
 
-        public string DescricaoRentabilidade
-        {
-            get
-            {
-                if (Indexador == "CDI")
-                {
-                    return $"{PorcentagemDistribuicao}% do CDI";
-                }
-                else if (Indexador == "IPCA")
-                {
-                    return $"{Indexador} + {TaxaDistribuicao}% a.a.";
-                }
-                else if (Indexador == "PRÉ")
-                {
-                    return $"{TaxaDistribuicao}% a.a.";
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-        }
-
-        public string TipoProduto
-        {
-            get
-            {
-                if (Indexador == "PRÉ")
-                {
-                    return "Pré-fixado";
-                }
-                else if (Indexador == "IPCA" || Indexador == "CDI")
-                {
-                    return "Pós-fixado";
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-        }
+        public string DescricaoRentabilidade{ get; set; }
+        public string TipoProduto{ get; set; }
     }
 }
