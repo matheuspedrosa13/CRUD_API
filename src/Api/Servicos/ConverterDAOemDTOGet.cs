@@ -31,7 +31,10 @@ public class ConverterDAOemDTO
             Risco = ofertaDAO.Risco,
             GarantidoPeloFGC = ofertaDAO.GarantidoPeloFGC,
             Descricao = ofertaDAO.Descricao,
-
+            DataCriacao = ofertaDAO.DataCriacao,
+            DataAtualizacao = ofertaDAO.DataAtualizacao,
+            Aprovada = ofertaDAO.Aprovada,
+            
             // Campos customizados
             DescricaoOferta = $"{ofertaDAO.NomeTitulo} + ({ofertaDAO.Indexador})",
             DescricaoLiquidez = ofertaDAO.Liquidez ? "Diária" : "No vencimento",
