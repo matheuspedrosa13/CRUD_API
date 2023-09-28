@@ -2,6 +2,7 @@ namespace CrudOfertas.Api.Servicos.DTOs
 {
     public class OfertaDTO
     {
+        public int ID { get; set; } // Nao vai aparecer
         public decimal PorcentagemEmissao { get; set; }
         public decimal PorcentagemDistribuicao { get; set; }
         public decimal TaxaEmissao { get; set; }
@@ -23,12 +24,12 @@ namespace CrudOfertas.Api.Servicos.DTOs
         public string Risco { get; set; }
         public bool GarantidoPeloFGC { get; set; }
         public string Descricao { get; set; }
-
         public string DescricaoOferta{ get; set; }
-
         public string DescricaoLiquidez{ get; set; }
-
         public string DescricaoRentabilidade{ get; set; }
         public string TipoProduto{ get; set; }
+        public DateTime DataCriacao { get; set; } //Nao vai mostrar
+        public DateTime DataAtualizacao { get; set; } //Nao vai mostrar
+        public bool Aprovada { get; set; } //Nao vai mostrar
     }
 }
