@@ -64,17 +64,3 @@ public static class OfertaDatabase
         return database;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

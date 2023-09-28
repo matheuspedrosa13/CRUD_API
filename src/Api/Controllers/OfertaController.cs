@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using CrudOfertas.Api.Infraestrutura;
 using CrudOfertas.Api.Repositorios.DAOs;
+using CrudOfertas.Api.Servicos.DTOs;
 using CrudOfertas.Api.Servicos.Interfaces;
+using CrudOfertas.Api.Servicos;
 
 namespace CrudOfertas.Api.Controllers
 {
@@ -17,23 +19,33 @@ namespace CrudOfertas.Api.Controllers
         }
 
         [HttpGet("TodasOfertas")]
-        public ActionResult<IEnumerable<OfertaDAO>> GetOfertas()
+        public ActionResult<IEnumerable<OfertaDTO>> GetOfertas()
         {
-            var ofertas = _ofertaService.ObterTodasOfertas();
-            Console.WriteLine(ofertas);
+            var ofertasDAO = _ofertaService.ObterTodasOfertas();
+            var ofertasDTO = new List<OfertaDTO>();
 
-            return Ok(ofertas);
+            foreach (var ofertaDAO in ofertasDAO)
+            {
+                var ofertaDTO = ConverterDAOemDTO.Converter(ofertaDAO);
+                ofertasDTO.Add(ofertaDTO);
+            }
+
+            return Ok(ofertasDTO);
         }
-
+        
         [HttpGet("ofertas/{id}")]
-        public ActionResult<OfertaDAO> GetOfertaPorId(int id)
+        public ActionResult<OfertaDTO> GetOfertaPorId(int id)
         {
-            var oferta = _ofertaService.ObterOfertaPorId(id);
-            if (oferta == null)
+            var ofertaDAO = _ofertaService.ObterOfertaPorId(id);
+
+            if (ofertaDAO == null)
             {
                 return NotFound();
             }
-            return Ok(oferta);
+
+            var ofertaDTO = ConverterDAOemDTO.Converter(ofertaDAO);
+
+            return Ok(ofertaDTO);
         }
 
         [HttpPost("ofertas")]

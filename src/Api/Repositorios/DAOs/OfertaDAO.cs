@@ -6,7 +6,7 @@ public class OfertaDAO
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int ID { get; set; }
+    public int ID { get; set; } // Nao vai aparecer
     public decimal PorcentagemEmissao { get; set; }
     public decimal PorcentagemDistribuicao { get; set; }
     public decimal TaxaEmissao { get; set; }
@@ -28,9 +28,9 @@ public class OfertaDAO
     public string Risco { get; set; }
     public bool GarantidoPeloFGC { get; set; }
     public string Descricao { get; set; }
-    public DateTime DataCriacao { get; set; }
-    public DateTime DataAtualizacao { get; set; }
-    public bool Aprovada { get; set; }
+    public DateTime DataCriacao { get; set; } //Nao vai mostrar
+    public DateTime DataAtualizacao { get; set; } //Nao vai mostrar
+    public bool Aprovada { get; set; } //Nao vai mostrar
 
     public OfertaDAO() { }  
     public OfertaDAO(
