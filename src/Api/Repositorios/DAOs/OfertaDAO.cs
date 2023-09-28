@@ -4,8 +4,6 @@ namespace CrudOfertas.Api.Repositorios.DAOs;
 
 public class OfertaDAO
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ID { get; set; } // Nao vai aparecer
     public decimal PorcentagemEmissao { get; set; }
     public decimal PorcentagemDistribuicao { get; set; }
