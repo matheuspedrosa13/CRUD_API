@@ -26,6 +26,7 @@ public class OfertaService : IOfertaService
     {
         if (ValidarOferta(oferta))
         {
+            
             _ofertaRepository.AdicionarOferta(oferta);
         }
         else

@@ -25,6 +25,8 @@ public class OfertaRepository  : IOfertaRepository
         {
             int id = OfertaDatabase.TamanhoDatabase();
             oferta.Id = id + 1;
+            oferta.DataCriacao = DateTime.Now;
+            oferta.DataAtualizacao = DateTime.Now;
             _ofertas.Add(oferta);
         }
 

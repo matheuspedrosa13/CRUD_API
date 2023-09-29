@@ -27,8 +27,8 @@ public static class OfertaDatabase
             Risco = "Baixo",
             GarantidoPeloFGC = true,
             Descricao = "Descrição da oferta 1",
-            DataCriacao = DateTime.Now,
-            DataAtualizacao = DateTime.Now,
+            DataCriacao = DateTime.Parse("2023-09-29T10:46:44.6683519-03:00"),
+            DataAtualizacao = DateTime.Parse("2023-09-29T10:46:44.6683519-03:00"),
             Aprovada = true
         },
         new OfertaDAO(){
@@ -54,8 +54,8 @@ public static class OfertaDatabase
             Risco = "Médio",
             GarantidoPeloFGC = false,
             Descricao = "Descrição da oferta 2",
-            DataCriacao  = DateTime.Now,
-            DataAtualizacao  = DateTime.Now,
+            DataCriacao  = DateTime.Parse("2023-09-29T10:46:44.6683519-03:00"),
+            DataAtualizacao  = DateTime.Parse("2023-09-29T10:46:44.6683519-03:00"),
             Aprovada  = true
         }
     };
