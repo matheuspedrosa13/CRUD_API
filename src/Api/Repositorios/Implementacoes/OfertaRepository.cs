@@ -18,18 +18,18 @@ public class OfertaRepository  : IOfertaRepository
 
         public OfertaDAO ObterOfertaPorId(int id)
         {
-            return _ofertas.FirstOrDefault(o => o.ID == id);
+            return _ofertas.FirstOrDefault(o => o.Id == id);
         }
 
         public void AdicionarOferta(OfertaDAO oferta)
         {
-            oferta.ID = _ofertas.Count + 1;
+            oferta.Id = _ofertas.Count + 1;
             _ofertas.Add(oferta);
         }
 
         public void AtualizarOferta(OfertaDAO oferta)
         {
-            var ofertaExistente = _ofertas.FirstOrDefault(o => o.ID == oferta.ID);
+            var ofertaExistente = _ofertas.FirstOrDefault(o => o.Id == oferta.Id);
             if (ofertaExistente != null)
             {
                 // Atualize os campos necessários da oferta existente
@@ -45,7 +45,7 @@ public class OfertaRepository  : IOfertaRepository
 
         public void RemoverOferta(int id)
         {
-            var ofertaExistente = _ofertas.FirstOrDefault(o => o.ID == id);
+            var ofertaExistente = _ofertas.FirstOrDefault(o => o.Id == id);
             if (ofertaExistente != null)
             {
                 _ofertas.Remove(ofertaExistente);

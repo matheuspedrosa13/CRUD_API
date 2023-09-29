@@ -54,7 +54,7 @@ namespace CrudOfertas.Api.Controllers
             try
             {
                 _ofertaService.AdicionarOferta(oferta);
-                return CreatedAtAction(nameof(GetOfertaPorId), new { id = oferta.ID }, oferta);
+                return CreatedAtAction(nameof(GetOfertaPorId), new { id = oferta.Id }, oferta);
             }
             catch (ArgumentException ex)
             {
@@ -65,7 +65,7 @@ namespace CrudOfertas.Api.Controllers
         [HttpPut("ofertas/{id}")]
         public ActionResult AtualizarOferta(int id, OfertaDAO oferta)
         {
-            oferta.ID = id; // Define o ID da oferta com base no parâmetro da rota.
+            oferta.Id = id; // Define o ID da oferta com base no parâmetro da rota.
             try
             {
                 _ofertaService.AtualizarOferta(oferta);

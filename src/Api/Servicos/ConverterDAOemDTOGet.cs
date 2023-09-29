@@ -9,7 +9,7 @@ public class ConverterDAOemDTO
     {
         var ofertaDTO = new OfertaDTO
         {
-            ID = ofertaDAO.ID,
+            ID = ofertaDAO.Id,
             PorcentagemEmissao = ofertaDAO.PorcentagemEmissao,
             PorcentagemDistribuicao = ofertaDAO.PorcentagemDistribuicao,
             TaxaEmissao = ofertaDAO.TaxaEmissao,

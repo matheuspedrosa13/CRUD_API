@@ -1,10 +1,8 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 namespace CrudOfertas.Api.Repositorios.DAOs;
 
 public class OfertaDAO
 {
-    public int ID { get; set; } // Nao vai aparecer
+    public int Id { get; set; } // Nao vai aparecer
     public decimal PorcentagemEmissao { get; set; }
     public decimal PorcentagemDistribuicao { get; set; }
     public decimal TaxaEmissao { get; set; }
@@ -26,60 +24,62 @@ public class OfertaDAO
     public string Risco { get; set; }
     public bool GarantidoPeloFGC { get; set; }
     public string Descricao { get; set; }
-    public DateTime DataCriacao { get; set; } //Nao vai mostrar
-    public DateTime DataAtualizacao { get; set; } //Nao vai mostrar
-    public bool Aprovada { get; set; } //Nao vai mostrar
+    public DateTime DataCriacao { get; set; }
 
-    public OfertaDAO() { }  
-    public OfertaDAO(
-        decimal porcentagemEmissao,
-        decimal porcentagemDistribuicao,
-        decimal taxaEmissao,
-        decimal taxaDistribuicao,
-        DateTime dataCarencia,
-        DateTime dataVencimento,
-        decimal precoUnitario,
-        decimal minimoAplicacao,
-        decimal maximoAplicacao,
-        decimal minimoResgate,
-        decimal maximoResgate,
-        int estoque,
-        DateTime horarioInicioNegociacao,
-        DateTime horarioFimNegociacao,
-        bool liquidez,
-        string indexador,
-        string nomeEmissor,
-        string nomeTitulo,
-        string risco,
-        bool garantidoPeloFGC,
-        string descricao)
-    {
-        PorcentagemEmissao = porcentagemEmissao;
-        PorcentagemDistribuicao = porcentagemDistribuicao;
-        TaxaEmissao = taxaEmissao;
-        TaxaDistribuicao = taxaDistribuicao;
-        DataCarencia = dataCarencia;
-        DataVencimento = dataVencimento;
-        PrecoUnitario = precoUnitario;
-        MinimoAplicacao = minimoAplicacao;
-        MaximoAplicacao = maximoAplicacao;
-        MinimoResgate = minimoResgate;
-        MaximoResgate = maximoResgate;
-        Estoque = estoque;
-        HorarioInicioNegociacao = horarioInicioNegociacao;
-        HorarioFimNegociacao = horarioFimNegociacao;
-        Liquidez = liquidez;
-        Indexador = indexador;
-        NomeEmissor = nomeEmissor;
-        NomeTitulo = nomeTitulo;
-        Risco = risco;
-        GarantidoPeloFGC = garantidoPeloFGC;
-        Descricao = descricao;
-    }
+    public DateTime DataAtualizacao { get; set; }
 
-    public override string ToString()
-    {
-        return "a";
-    }
+    public bool Aprovada { get; set; }
+
+    // public OfertaDAO() { }  
+    // public OfertaDAO(
+    //     decimal porcentagemEmissao,
+    //     decimal porcentagemDistribuicao,
+    //     decimal taxaEmissao,
+    //     decimal taxaDistribuicao,
+    //     DateTime dataCarencia,
+    //     DateTime dataVencimento,
+    //     decimal precoUnitario,
+    //     decimal minimoAplicacao,
+    //     decimal maximoAplicacao,
+    //     decimal minimoResgate,
+    //     decimal maximoResgate,
+    //     int estoque,
+    //     DateTime horarioInicioNegociacao,
+    //     DateTime horarioFimNegociacao,
+    //     bool liquidez,
+    //     string indexador,
+    //     string nomeEmissor,
+    //     string nomeTitulo,
+    //     string risco,
+    //     bool garantidoPeloFGC,
+    //     string descricao)
+    // {
+    //     PorcentagemEmissao = porcentagemEmissao;
+    //     PorcentagemDistribuicao = porcentagemDistribuicao;
+    //     TaxaEmissao = taxaEmissao;
+    //     TaxaDistribuicao = taxaDistribuicao;
+    //     DataCarencia = dataCarencia;
+    //     DataVencimento = dataVencimento;
+    //     PrecoUnitario = precoUnitario;
+    //     MinimoAplicacao = minimoAplicacao;
+    //     MaximoAplicacao = maximoAplicacao;
+    //     MinimoResgate = minimoResgate;
+    //     MaximoResgate = maximoResgate;
+    //     Estoque = estoque;
+    //     HorarioInicioNegociacao = horarioInicioNegociacao;
+    //     HorarioFimNegociacao = horarioFimNegociacao;
+    //     Liquidez = liquidez;
+    //     Indexador = indexador;
+    //     NomeEmissor = nomeEmissor;
+    //     NomeTitulo = nomeTitulo;
+    //     Risco = risco;
+    //     GarantidoPeloFGC = garantidoPeloFGC;
+    //     Descricao = descricao;
+    // }
+
+    // public override string ToString()
+    // {
+    //     return "a";
+    // }
 }
 
