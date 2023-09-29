@@ -82,7 +82,7 @@ public class OfertaController : ControllerBase
     public ActionResult RemoverOferta(int id)
     {
         _ofertaService.RemoverOferta(id);
-        return NoContent(); // Retorna HTTP 204 (Sem conteúdo) se a remoção for bem-sucedida.
+        return Ok("Funfou"); // Retorna HTTP 204 (Sem conteúdo) se a remoção for bem-sucedida.
     }
 }
 
