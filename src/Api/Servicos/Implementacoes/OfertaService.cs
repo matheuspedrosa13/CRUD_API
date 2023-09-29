@@ -53,11 +53,32 @@ public class OfertaService : IOfertaService
 
     public bool ValidarOferta(OfertaDAO oferta)
     {
-        // Implemente suas regras de validação aqui
-        // Por exemplo, você pode verificar se os valores são válidos, se as datas estão corretas, etc.
-        // Retorne true se a oferta for válida, caso contrário, retorne false.
-
-        // Exemplo simples: Verificar se o preço unitário é maior que zero
-        return oferta.PrecoUnitario > 0;
+        DateTime dataCriacao = oferta.DataCriacao;
+        DateTime dataMinimaCarencia = dataCriacao.AddMonths(3);
+        DateTime dataMinimaVencimento = dataCriacao.AddYears(5);
+        if (oferta.DataCarencia < dataMinimaCarencia || oferta.DataVencimento < dataMinimaVencimento)
+        {
+            return false; 
+        }
+        if (oferta.PorcentagemEmissao <= 0 || oferta.PorcentagemDistribuicao <= 0 || oferta.TaxaEmissao <= 0 || oferta.TaxaDistribuicao <= 0
+            || oferta.PrecoUnitario <= 0 || oferta.MinimoAplicacao <= 0 || oferta.MaximoAplicacao <= 0 || oferta.MinimoResgate <= 0 || oferta.MaximoResgate <= 0
+            || oferta.Estoque < 0)
+        {
+            return false;
+        }
+        if (oferta.HorarioInicioNegociacao >= oferta.HorarioFimNegociacao)
+        {
+            return false; 
+        }
+        if (string.IsNullOrEmpty(oferta.Indexador) || string.IsNullOrEmpty(oferta.NomeEmissor) || string.IsNullOrEmpty(oferta.NomeTitulo) 
+            || string.IsNullOrEmpty(oferta.Risco) || string.IsNullOrEmpty(oferta.Descricao))
+        {
+            return false;
+        }
+        if (!oferta.Liquidez || !oferta.GarantidoPeloFGC)
+        {
+            return false;
+        }
+        return true;
     }
 }

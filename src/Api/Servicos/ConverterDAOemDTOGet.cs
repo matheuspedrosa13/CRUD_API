@@ -39,7 +39,7 @@ public class ConverterDAOemDTO
             DescricaoOferta = $"{ofertaDAO.NomeTitulo} + ({ofertaDAO.Indexador})",
             DescricaoLiquidez = ofertaDAO.Liquidez ? "Diária" : "No vencimento",
             DescricaoRentabilidade = GetDescricaoRentabilidade(ofertaDAO),
-            TipoProduto = GetTipoProduto(ofertaDAO.Indexador)
+            TipoProduto = GetTipoProduto(ofertaDAO.Indexador!)
         };
 
         return ofertaDTO;
@@ -47,7 +47,7 @@ public class ConverterDAOemDTO
 
     private static string GetDescricaoRentabilidade(OfertaDAO ofertaDAO)
     {
-        if (ofertaDAO.Indexador.Equals("CDI", StringComparison.OrdinalIgnoreCase))
+        if (ofertaDAO.Indexador!.Equals("CDI", StringComparison.OrdinalIgnoreCase))
         {
             return $"{ofertaDAO.PorcentagemDistribuicao}% do CDI";
         }

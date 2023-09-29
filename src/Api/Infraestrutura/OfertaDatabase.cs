@@ -64,7 +64,9 @@ public static class OfertaDatabase
     {
         database.Add(oferta);
     }
-
+    public static int TamanhoDatabase(){
+        return database[0].Id;
+    }
     public static List<OfertaDAO> ObterOfertas()
     {
         return database;

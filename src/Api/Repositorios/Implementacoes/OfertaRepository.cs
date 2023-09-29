@@ -18,12 +18,13 @@ public class OfertaRepository  : IOfertaRepository
 
         public OfertaDAO ObterOfertaPorId(int id)
         {
-            return _ofertas.FirstOrDefault(o => o.Id == id);
+            return _ofertas.FirstOrDefault(o => o.Id == id)!;
         }
 
         public void AdicionarOferta(OfertaDAO oferta)
         {
-            oferta.Id = _ofertas.Count + 1;
+            int id = OfertaDatabase.TamanhoDatabase();
+            oferta.Id = id + 1;
             _ofertas.Add(oferta);
         }
 
