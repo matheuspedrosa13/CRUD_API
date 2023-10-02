@@ -9,6 +9,7 @@ namespace CrudOfertas.Api.Servicos
         {
             var ofertaDAO = new OfertaDAO
             {
+                Id = ofertaDTO.Id,
                 PorcentagemEmissao = ofertaDTO.PorcentagemEmissao,
                 PorcentagemDistribuicao = ofertaDTO.PorcentagemDistribuicao,
                 TaxaEmissao = ofertaDTO.TaxaEmissao,

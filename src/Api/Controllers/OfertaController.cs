@@ -63,9 +63,11 @@ public class OfertaController : ControllerBase
         {
             Console.WriteLine("aqui foi 1");
             List<OfertaDTOGet> ofertas = GetOfertas().Value!;
-            Console.Write(ofertas);
+            Console.Write(ofertas.Count);
             int quantidadeDeOfertas = ofertas.Count;
-            _ofertaService.AdicionarOferta(ofertaDTO, quantidadeDeOfertas);
+            ofertaDTO.Id = quantidadeDeOfertas + 1;
+            _ofertaService.AdicionarOferta(ofertaDTO);
+            Console.WriteLine(ofertaDTO.Id);
             
             return "Oferta adicionada com sucesso";
         }

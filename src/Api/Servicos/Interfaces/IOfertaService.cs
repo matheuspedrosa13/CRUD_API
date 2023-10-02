@@ -5,7 +5,7 @@ public interface IOfertaService
 {
     List<OfertaDAO> ObterTodasOfertas();
     OfertaDAO ObterOfertaPorId(int id);
-    void AdicionarOferta(OfertaDTOPost oferta, int valorID);
+    void AdicionarOferta(OfertaDTOPost oferta);
     void AtualizarOferta(OfertaDAO oferta);
     void RemoverOferta(int id);
 }

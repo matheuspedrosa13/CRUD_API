@@ -23,9 +23,9 @@ public class OfertaService : IOfertaService
         return _ofertaRepository.ObterOfertaPorId(id);
     }
 
-    public void AdicionarOferta(OfertaDTOPost oferta, int valorID)
+    public void AdicionarOferta(OfertaDTOPost oferta)
     {
-        AdicionandoCoisasFixasEmOferta.AdicionadoPadraoOferta(oferta, _ofertaRepository, valorID);
+        AdicionandoCoisasFixasEmOferta.AdicionadoPadraoOferta(oferta);
         if (ValidarOferta.Validar(oferta))
         {
             OfertaDAO ofertaDAO = ConverterDTOemDAOPost.Converter(oferta);
