@@ -48,27 +48,15 @@ public class OfertaController : ControllerBase
         return Ok(ofertaDTO); 
     }
 
-    [HttpPost]
-    public void Add([FromBody] OfertaDTOGet ofertaDTO)
-    {
-        Console.WriteLine(ofertaDTO.DescricaoLiquidez);
-    }
-
     [HttpPost("/ofertas")]
     public ActionResult<string> AdicionarOferta([FromBody] OfertaDTOPost ofertaDTO)
     {
-        Console.WriteLine("aqui foi 1");
-
         try
         {
-            Console.WriteLine("aqui foi 1");
             List<OfertaDTOGet> ofertas = GetOfertas().Value!;
-            Console.Write(ofertas.Count);
             int quantidadeDeOfertas = ofertas.Count;
             ofertaDTO.Id = quantidadeDeOfertas + 1;
             _ofertaService.AdicionarOferta(ofertaDTO);
-            Console.WriteLine(ofertaDTO.Id);
-            
             return "Oferta adicionada com sucesso";
         }
         catch (ArgumentException ex)
