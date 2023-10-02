@@ -3,7 +3,7 @@ using CrudOfertas.Api.Repositorios.DAOs;
 using CrudOfertas.Api.Servicos.DTOs;
 using CrudOfertas.Api.Servicos.Interfaces;
 using CrudOfertas.Api.Servicos;
-
+using CrudOfertas.Api.Controllers.Requisicoes.Read;
 namespace CrudOfertas.Api.Controllers;
 
 [ApiController]
@@ -21,16 +21,7 @@ public class OfertaController : ControllerBase
     [HttpGet("/ofertas")]
     public ActionResult<List<OfertaDTOGet>> GetOfertas()
     {
-        var ofertasDAO = _ofertaService.ObterTodasOfertas();
-        var ofertasDTO = new List<OfertaDTOGet>();
-
-        foreach (var ofertaDAO in ofertasDAO)
-        {
-            var ofertaDTO = ConverterDAOemDTO.Converter(ofertaDAO);
-            ofertasDTO.Add(ofertaDTO);
-        }
-
-        return ofertasDTO;
+        return RequisicoesDeLeitura.TodasAsOfertas(_ofertaService);
     }
     
     [HttpGet("/ofertas/{id}")]
