@@ -1,7 +1,8 @@
 using CrudOfertas.Api.Repositorios.Interfaces;
 using CrudOfertas.Api.Servicos.Interfaces;
 using CrudOfertas.Api.Repositorios.DAOs;
-
+using CrudOfertas.Api.Servico;
+using CrudOfertas.Api.Servicos;
 namespace CrudOfertas.Api.Servicos.Implementacos;
 public class OfertaService : IOfertaService
 {
@@ -22,11 +23,11 @@ public class OfertaService : IOfertaService
         return _ofertaRepository.ObterOfertaPorId(id);
     }
 
-    public void AdicionarOferta(OfertaDAO oferta)
+    public void AdicionarOferta(OfertaDAO oferta, int valorID)
     {
-        if (ValidarOferta(oferta))
+        AdicionandoCoisasFixasEmOferta.AdicionadoPadraoOferta(oferta, _ofertaRepository, valorID);
+        if (ValidarOferta.Validar(oferta))
         {
-            
             _ofertaRepository.AdicionarOferta(oferta);
         }
         else
@@ -37,7 +38,7 @@ public class OfertaService : IOfertaService
 
     public void AtualizarOferta(OfertaDAO oferta)
     {
-        if (ValidarOferta(oferta))
+        if (ValidarOferta.Validar(oferta))
         {
             _ofertaRepository.AtualizarOferta(oferta);
         }
@@ -52,34 +53,6 @@ public class OfertaService : IOfertaService
         _ofertaRepository.RemoverOferta(id);
     }
 
-    public bool ValidarOferta(OfertaDAO oferta)
-    {
-        DateTime dataCriacao = oferta.DataCriacao;
-        DateTime dataMinimaCarencia = dataCriacao.AddMonths(3);
-        DateTime dataMinimaVencimento = dataCriacao.AddYears(5);
-        if (oferta.DataCarencia < dataMinimaCarencia || oferta.DataVencimento < dataMinimaVencimento)
-        {
-            return false; 
-        }
-        if (oferta.PorcentagemEmissao <= 0 || oferta.PorcentagemDistribuicao <= 0 || oferta.TaxaEmissao <= 0 || oferta.TaxaDistribuicao <= 0
-            || oferta.PrecoUnitario <= 0 || oferta.MinimoAplicacao <= 0 || oferta.MaximoAplicacao <= 0 || oferta.MinimoResgate <= 0 || oferta.MaximoResgate <= 0
-            || oferta.Estoque < 0)
-        {
-            return false;
-        }
-        if (oferta.HorarioInicioNegociacao >= oferta.HorarioFimNegociacao)
-        {
-            return false; 
-        }
-        if (string.IsNullOrEmpty(oferta.Indexador) || string.IsNullOrEmpty(oferta.NomeEmissor) || string.IsNullOrEmpty(oferta.NomeTitulo) 
-            || string.IsNullOrEmpty(oferta.Risco) || string.IsNullOrEmpty(oferta.Descricao))
-        {
-            return false;
-        }
-        if (!oferta.Liquidez || !oferta.GarantidoPeloFGC)
-        {
-            return false;
-        }
-        return true;
-    }
+
+
 }

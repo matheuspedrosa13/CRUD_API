@@ -1,7 +1,5 @@
-
 using CrudOfertas.Api.Servicos.DTOs;
 using CrudOfertas.Api.Repositorios.DAOs;
-
 namespace CrudOfertas.Api.Servicos;
 public class ConverterDAOemDTO
 {

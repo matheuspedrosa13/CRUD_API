@@ -2,7 +2,7 @@ namespace CrudOfertas.Api.Servicos.DTOs
 {
     public class OfertaDTO
     {
-        public int ID { get; set; } // Nao vai aparecer
+        public int ID { get; set; }
         public decimal PorcentagemEmissao { get; set; }
         public decimal PorcentagemDistribuicao { get; set; }
         public decimal TaxaEmissao { get; set; }

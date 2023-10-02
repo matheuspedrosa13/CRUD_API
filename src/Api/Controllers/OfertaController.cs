@@ -19,7 +19,7 @@ public class OfertaController : ControllerBase
 
 
     [HttpGet("ofertas")]
-    public ActionResult<IEnumerable<OfertaDTO>> GetOfertas()
+    public ActionResult<List<OfertaDTO>> GetOfertas()
     {
         var ofertasDAO = _ofertaService.ObterTodasOfertas();
         var ofertasDTO = new List<OfertaDTO>();
@@ -30,9 +30,8 @@ public class OfertaController : ControllerBase
             ofertasDTO.Add(ofertaDTO);
         }
 
-        return Ok(ofertasDTO);
+        return ofertasDTO;
     }
-
     
     [HttpGet("ofertas/{id}")]
     public ActionResult<OfertaDTO> GetOfertaPorId(int id)
@@ -46,22 +45,62 @@ public class OfertaController : ControllerBase
 
         var ofertaDTO = ConverterDAOemDTO.Converter(ofertaDAO);
 
-        return Ok(ofertaDTO);
+        return Ok(ofertaDTO); 
     }
 
     [HttpPost("ofertas")]
-    public ActionResult AdicionarOferta(OfertaDAO oferta)
+    public ActionResult<string> AdicionarOferta(
+        decimal PorcentagemEmissao,
+        decimal PorcentagemDistribuicao,
+        decimal TaxaEmissao,
+        decimal TaxaDistribuicao,
+        decimal PrecoUnitario,
+        int Estoque,
+        DateTime HorarioInicioNegociacao,
+        DateTime HorarioFimNegociacao,
+        bool Liquidez,
+        string Indexador,
+        string NomeEmissor,
+        string NomeTitulo,
+        string Risco,
+        bool GarantidoPeloFGC,
+        string Descricao,
+        bool Aprovada
+    )
     {
         try
         {
-            _ofertaService.AdicionarOferta(oferta);
-            return CreatedAtAction(nameof(GetOfertaPorId), new { id = oferta.Id }, oferta);
+            var oferta = new OfertaDAO
+            {
+                PorcentagemEmissao = PorcentagemEmissao,
+                PorcentagemDistribuicao = PorcentagemDistribuicao,
+                TaxaEmissao = TaxaEmissao,
+                TaxaDistribuicao = TaxaDistribuicao,
+                PrecoUnitario = PrecoUnitario,
+                Estoque = Estoque,
+                HorarioInicioNegociacao = HorarioInicioNegociacao,
+                HorarioFimNegociacao = HorarioFimNegociacao,
+                Liquidez = Liquidez,
+                Indexador = Indexador,
+                NomeEmissor = NomeEmissor,
+                NomeTitulo = NomeTitulo,
+                Risco = Risco,
+                GarantidoPeloFGC = GarantidoPeloFGC,
+                Descricao = Descricao,
+                Aprovada = Aprovada
+            };
+            List<OfertaDTO> ofertas = GetOfertas().Value!;
+            int quantidadeDeOfertas = ofertas.Count;
+            _ofertaService.AdicionarOferta(oferta, quantidadeDeOfertas);
+            
+            return "Oferta adicionada com sucesso";
         }
         catch (ArgumentException ex)
         {
-            return BadRequest(ex.Message); // Retorna HTTP 400 com a mensagem de erro se a oferta for inválida.
+            return BadRequest(ex.Message);
         }
     }
+
 
     [HttpPut("ofertas/{id}")]
     public ActionResult AtualizarOferta(int id, OfertaDAO oferta)

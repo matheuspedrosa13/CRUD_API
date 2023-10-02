@@ -8,4 +8,5 @@ public interface IOfertaRepository
     void AdicionarOferta(OfertaDAO oferta);
     void AtualizarOferta(OfertaDAO oferta);
     void RemoverOferta(int id);
+    int TamanhoDatabase();
 }

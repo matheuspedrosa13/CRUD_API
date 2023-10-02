@@ -23,11 +23,12 @@ public class OfertaRepository  : IOfertaRepository
 
         public void AdicionarOferta(OfertaDAO oferta)
         {
-            int id = OfertaDatabase.TamanhoDatabase();
-            oferta.Id = id + 1;
-            oferta.DataCriacao = DateTime.Now;
-            oferta.DataAtualizacao = DateTime.Now;
             _ofertas.Add(oferta);
+        }
+
+        public int TamanhoDatabase(){
+            int id = OfertaDatabase.TamanhoDatabase();
+            return id;
         }
 
         public void AtualizarOferta(OfertaDAO oferta)

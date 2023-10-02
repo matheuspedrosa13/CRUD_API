@@ -31,3 +31,36 @@ C:\Users\t60811\Desktop\CSHARP\CRUDOFERTAS\obj\Debug\net7.0\refint\crud-ofertas.
 C:\Users\t60811\Desktop\CSHARP\CRUDOFERTAS\obj\Debug\net7.0\crud-ofertas.pdb
 C:\Users\t60811\Desktop\CSHARP\CRUDOFERTAS\obj\Debug\net7.0\crud-ofertas.genruntimeconfig.cache
 C:\Users\t60811\Desktop\CSHARP\CRUDOFERTAS\obj\Debug\net7.0\ref\crud-ofertas.dll
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\bin\Debug\net7.0\appsettings.json
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\bin\Debug\net7.0\crud-ofertas.exe
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\bin\Debug\net7.0\crud-ofertas.deps.json
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\bin\Debug\net7.0\crud-ofertas.runtimeconfig.json
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\bin\Debug\net7.0\crud-ofertas.dll
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\bin\Debug\net7.0\crud-ofertas.pdb
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\crud-ofertas.csproj.AssemblyReference.cache
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\crud-ofertas.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\crud-ofertas.AssemblyInfoInputs.cache
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\crud-ofertas.AssemblyInfo.cs
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\crud-ofertas.csproj.CoreCompileInputs.cache
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\crud-ofertas.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\crud-ofertas.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\staticwebassets\msbuild.crud-ofertas.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\staticwebassets\msbuild.build.crud-ofertas.props
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.crud-ofertas.props
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.crud-ofertas.props
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\scopedcss\bundle\crud-ofertas.styles.css
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\crud-ofertas.csproj.CopyComplete
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\crud-ofertas.dll
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\refint\crud-ofertas.dll
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\crud-ofertas.pdb
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\crud-ofertas.genruntimeconfig.cache
+C:\Users\Aluno Temp\Desktop\TESTECSHARP\CRUD_API\obj\Debug\net7.0\ref\crud-ofertas.dll
