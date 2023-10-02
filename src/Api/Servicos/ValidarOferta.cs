@@ -1,8 +1,8 @@
-using CrudOfertas.Api.Repositorios.DAOs;
+using CrudOfertas.Api.Servicos.DTOs;
 namespace CrudOfertas.Api.Servico;
 public class ValidarOferta
 {
-    public static bool Validar(OfertaDAO oferta)
+    public static bool Validar(OfertaDTOPost oferta)
     {
         if (oferta.PorcentagemEmissao <= 0 || oferta.PorcentagemDistribuicao <= 0 || oferta.TaxaEmissao <= 0 || oferta.TaxaDistribuicao <= 0
             || oferta.PrecoUnitario <= 0 || oferta.MinimoAplicacao <= 0 || oferta.MaximoAplicacao <= 0 || oferta.MinimoResgate <= 0 || oferta.MaximoResgate <= 0

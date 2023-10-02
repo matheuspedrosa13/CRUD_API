@@ -3,9 +3,9 @@ using CrudOfertas.Api.Repositorios.DAOs;
 namespace CrudOfertas.Api.Servicos;
 public class ConverterDAOemDTO
 {
-    public static OfertaDTO Converter(OfertaDAO ofertaDAO)
+    public static OfertaDTOGet Converter(OfertaDAO ofertaDAO)
     {
-        var ofertaDTO = new OfertaDTO
+        var ofertaDTO = new OfertaDTOGet
         {
             ID = ofertaDAO.Id,
             PorcentagemEmissao = ofertaDAO.PorcentagemEmissao,

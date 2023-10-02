@@ -7,7 +7,7 @@ using CrudOfertas.Api.Servicos;
 namespace CrudOfertas.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("")]
 public class OfertaController : ControllerBase
 {
     private readonly IOfertaService _ofertaService;
@@ -18,11 +18,11 @@ public class OfertaController : ControllerBase
     }
 
 
-    [HttpGet("ofertas")]
-    public ActionResult<List<OfertaDTO>> GetOfertas()
+    [HttpGet("/ofertas")]
+    public ActionResult<List<OfertaDTOGet>> GetOfertas()
     {
         var ofertasDAO = _ofertaService.ObterTodasOfertas();
-        var ofertasDTO = new List<OfertaDTO>();
+        var ofertasDTO = new List<OfertaDTOGet>();
 
         foreach (var ofertaDAO in ofertasDAO)
         {
@@ -33,8 +33,8 @@ public class OfertaController : ControllerBase
         return ofertasDTO;
     }
     
-    [HttpGet("ofertas/{id}")]
-    public ActionResult<OfertaDTO> GetOfertaPorId(int id)
+    [HttpGet("/ofertas/{id}")]
+    public ActionResult<OfertaDTOGet> GetOfertaPorId(int id)
     {
         var ofertaDAO = _ofertaService.ObterOfertaPorId(id);
 
@@ -49,55 +49,23 @@ public class OfertaController : ControllerBase
     }
 
     [HttpPost]
-    public void Add([FromBody] OfertaDTO ofertaDTO)
+    public void Add([FromBody] OfertaDTOGet ofertaDTO)
     {
         Console.WriteLine(ofertaDTO.DescricaoLiquidez);
     }
 
-    [HttpPost("ofertas")]
-    public ActionResult<string> AdicionarOferta(
-        decimal PorcentagemEmissao,
-        decimal PorcentagemDistribuicao,
-        decimal TaxaEmissao,
-        decimal TaxaDistribuicao,
-        decimal PrecoUnitario,
-        int Estoque,
-        DateTime HorarioInicioNegociacao,
-        DateTime HorarioFimNegociacao,
-        bool Liquidez,
-        string Indexador,
-        string NomeEmissor,
-        string NomeTitulo,
-        string Risco,
-        bool GarantidoPeloFGC,
-        string Descricao,
-        bool Aprovada
-    )
+    [HttpPost("/ofertas")]
+    public ActionResult<string> AdicionarOferta([FromBody] OfertaDTOPost ofertaDTO)
     {
+        Console.WriteLine("aqui foi 1");
+
         try
         {
-            var oferta = new OfertaDAO
-            {
-                PorcentagemEmissao = PorcentagemEmissao,
-                PorcentagemDistribuicao = PorcentagemDistribuicao,
-                TaxaEmissao = TaxaEmissao,
-                TaxaDistribuicao = TaxaDistribuicao,
-                PrecoUnitario = PrecoUnitario,
-                Estoque = Estoque,
-                HorarioInicioNegociacao = HorarioInicioNegociacao,
-                HorarioFimNegociacao = HorarioFimNegociacao,
-                Liquidez = Liquidez,
-                Indexador = Indexador,
-                NomeEmissor = NomeEmissor,
-                NomeTitulo = NomeTitulo,
-                Risco = Risco,
-                GarantidoPeloFGC = GarantidoPeloFGC,
-                Descricao = Descricao,
-                Aprovada = Aprovada
-            };
-            List<OfertaDTO> ofertas = GetOfertas().Value!;
+            Console.WriteLine("aqui foi 1");
+            List<OfertaDTOGet> ofertas = GetOfertas().Value!;
+            Console.Write(ofertas);
             int quantidadeDeOfertas = ofertas.Count;
-            _ofertaService.AdicionarOferta(oferta, quantidadeDeOfertas);
+            _ofertaService.AdicionarOferta(ofertaDTO, quantidadeDeOfertas);
             
             return "Oferta adicionada com sucesso";
         }
@@ -108,7 +76,7 @@ public class OfertaController : ControllerBase
     }
 
 
-    [HttpPut("ofertas/{id}")]
+    [HttpPut("/ofertas/{id}")]
     public ActionResult AtualizarOferta(int id, OfertaDAO oferta)
     {
         oferta.Id = id; // Define o ID da oferta com base no parâmetro da rota.
@@ -123,7 +91,7 @@ public class OfertaController : ControllerBase
         }
     }
 
-    [HttpDelete("ofertas/{id}")]
+    [HttpDelete("/ofertas/{id}")]
     public ActionResult RemoverOferta(int id)
     {
         _ofertaService.RemoverOferta(id);

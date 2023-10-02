@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace CrudOfertas.Api.Servicos.DTOs
 {
-    public class OfertaDTO
+    public class OfertaDTOGet
     {
         public int ID { get; set; }
         public decimal PorcentagemEmissao { get; set; }

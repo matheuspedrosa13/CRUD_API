@@ -1,5 +1,6 @@
 namespace CrudOfertas.Api.Repositorios.Implementacoes;
 using CrudOfertas.Api.Repositorios.DAOs;
+using CrudOfertas.Api.Servicos.DTOs;
 using CrudOfertas.Api.Infraestrutura;
 using CrudOfertas.Api.Repositorios.Interfaces;
 public class OfertaRepository  : IOfertaRepository
@@ -23,6 +24,7 @@ public class OfertaRepository  : IOfertaRepository
 
         public void AdicionarOferta(OfertaDAO oferta)
         {
+
             _ofertas.Add(oferta);
         }
 

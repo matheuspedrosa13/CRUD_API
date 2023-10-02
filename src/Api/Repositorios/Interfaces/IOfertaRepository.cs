@@ -1,4 +1,5 @@
 using CrudOfertas.Api.Repositorios.DAOs;
+using CrudOfertas.Api.Servicos.DTOs;
 
 namespace CrudOfertas.Api.Repositorios.Interfaces;
 public interface IOfertaRepository

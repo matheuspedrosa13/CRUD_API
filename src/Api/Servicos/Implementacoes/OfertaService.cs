@@ -2,7 +2,7 @@ using CrudOfertas.Api.Repositorios.Interfaces;
 using CrudOfertas.Api.Servicos.Interfaces;
 using CrudOfertas.Api.Repositorios.DAOs;
 using CrudOfertas.Api.Servico;
-using CrudOfertas.Api.Servicos;
+using CrudOfertas.Api.Servicos.DTOs;
 namespace CrudOfertas.Api.Servicos.Implementacos;
 public class OfertaService : IOfertaService
 {
@@ -23,12 +23,13 @@ public class OfertaService : IOfertaService
         return _ofertaRepository.ObterOfertaPorId(id);
     }
 
-    public void AdicionarOferta(OfertaDAO oferta, int valorID)
+    public void AdicionarOferta(OfertaDTOPost oferta, int valorID)
     {
         AdicionandoCoisasFixasEmOferta.AdicionadoPadraoOferta(oferta, _ofertaRepository, valorID);
         if (ValidarOferta.Validar(oferta))
         {
-            _ofertaRepository.AdicionarOferta(oferta);
+            OfertaDAO ofertaDAO = ConverterDTOemDAOPost.Converter(oferta);
+            _ofertaRepository.AdicionarOferta(ofertaDAO);
         }
         else
         {
@@ -38,14 +39,14 @@ public class OfertaService : IOfertaService
 
     public void AtualizarOferta(OfertaDAO oferta)
     {
-        if (ValidarOferta.Validar(oferta))
-        {
-            _ofertaRepository.AtualizarOferta(oferta);
-        }
-        else
-        {
-            throw new ArgumentException("Oferta inválida. Verifique os dados.");
-        }
+        // if (ValidarOferta.Validar(oferta))
+        // {
+        //     _ofertaRepository.AtualizarOferta(oferta);
+        // }
+        // else
+        // {
+        //     throw new ArgumentException("Oferta inválida. Verifique os dados.");
+        // }
     }
 
     public void RemoverOferta(int id)
