@@ -48,6 +48,12 @@ public class OfertaController : ControllerBase
         return Ok(ofertaDTO); 
     }
 
+    [HttpPost]
+    public void Add([FromBody] OfertaDTO ofertaDTO)
+    {
+        Console.WriteLine(ofertaDTO.DescricaoLiquidez);
+    }
+
     [HttpPost("ofertas")]
     public ActionResult<string> AdicionarOferta(
         decimal PorcentagemEmissao,

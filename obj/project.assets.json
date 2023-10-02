@@ -469,19 +469,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Aluno Temp\\.nuget\\packages\\": {}
+    "C:\\Users\\t60811\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Aluno Temp\\Desktop\\TESTECSHARP\\CRUD_API\\crud-ofertas.csproj",
+      "projectUniqueName": "C:\\Users\\t60811\\Desktop\\CSHARP\\CRUDOFERTAS\\crud-ofertas.csproj",
       "projectName": "crud-ofertas",
-      "projectPath": "C:\\Users\\Aluno Temp\\Desktop\\TESTECSHARP\\CRUD_API\\crud-ofertas.csproj",
-      "packagesPath": "C:\\Users\\Aluno Temp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Aluno Temp\\Desktop\\TESTECSHARP\\CRUD_API\\obj\\",
+      "projectPath": "C:\\Users\\t60811\\Desktop\\CSHARP\\CRUDOFERTAS\\crud-ofertas.csproj",
+      "packagesPath": "C:\\Users\\t60811\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\t60811\\Desktop\\CSHARP\\CRUDOFERTAS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Aluno Temp\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\t60811\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -533,7 +533,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace CrudOfertas.Api.Servicos.DTOs
 {
     public class OfertaDTO
