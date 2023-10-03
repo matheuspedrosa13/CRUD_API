@@ -47,7 +47,7 @@ public class OfertaController : ControllerBase
         return Ok(ofertaDTO); 
     }
 
-    [HttpGet("/ofertas/{nome}")]
+    [HttpGet("/ofertas/buscar")]
     public ActionResult<List<OfertaDTOGet>> BuscarOfertasPorNome(string nome)
     {
         var ofertasDAO = _ofertaService.ObterTodasOfertas()
