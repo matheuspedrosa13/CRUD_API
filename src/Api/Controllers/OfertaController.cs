@@ -6,7 +6,7 @@ using CrudOfertas.Api.Servicos;
 namespace CrudOfertas.Api.Controllers;
 
 [ApiController]
-[Route("")]
+[Route("/ofertas")]
 public class OfertaController : ControllerBase
 {
     private readonly IOfertaService _ofertaService;
@@ -17,7 +17,7 @@ public class OfertaController : ControllerBase
     }
 
 
-    [HttpGet("/ofertas")]
+    [HttpGet]
     public ActionResult<List<OfertaDTOGet>> GetOfertas()
     {
         var ofertasDAO = _ofertaService.ObterTodasOfertas();
@@ -32,7 +32,7 @@ public class OfertaController : ControllerBase
         return ofertasDTO;
     }
     
-    [HttpGet("/ofertas/{id}")]
+    [HttpGet("/{id}")]
     public ActionResult<OfertaDTOGet> BuscarOfertaPorId(int id)
     {
         var ofertaDAO = _ofertaService.ObterOfertaPorId(id);
@@ -47,7 +47,7 @@ public class OfertaController : ControllerBase
         return Ok(ofertaDTO); 
     }
 
-    [HttpGet("/ofertas/buscar")]
+    [HttpGet("/{nome}")]
     public ActionResult<List<OfertaDTOGet>> BuscarOfertasPorNome(string nome)
     {
         var ofertasDAO = _ofertaService.ObterTodasOfertas()
@@ -65,7 +65,7 @@ public class OfertaController : ControllerBase
     }
 
 
-    [HttpPost("/ofertas")]
+    [HttpPost]
     public ActionResult<string> AdicionarOferta([FromBody] OfertaDTOPost ofertaDTO)
     {
         try
@@ -83,7 +83,7 @@ public class OfertaController : ControllerBase
     }
 
 
-    [HttpPut("/ofertas/{id}")]
+    [HttpPut("/{id}")]
     public ActionResult AtualizarOferta(int id, OfertaDAO oferta)
     {
         oferta.Id = id; // Define o ID da oferta com base no parâmetro da rota.
@@ -98,7 +98,7 @@ public class OfertaController : ControllerBase
         }
     }
 
-    [HttpDelete("/ofertas/{id}")]
+    [HttpDelete("/{id}")]
     public ActionResult RemoverOferta(int id)
     {
         _ofertaService.RemoverOferta(id);
