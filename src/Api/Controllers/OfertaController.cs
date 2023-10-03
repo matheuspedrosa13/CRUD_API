@@ -24,10 +24,10 @@ public class OfertaController : ControllerBase
     {
         var nome = parametrosBuscaOferta.nome;
         var liquidez = parametrosBuscaOferta.liquidez;
+        var aprovada = parametrosBuscaOferta.aprovada;
         Console.WriteLine(liquidez);
         if(nome != ""){
             Console.WriteLine(nome);
-            Console.WriteLine("entrou aqui 1");
             var ofertasDAONome = _ofertaService.ObterTodasOfertas()
             .Where(o => o.NomeTitulo!.ToLower().Contains(nome.ToLower()))
             .ToList();
@@ -44,7 +44,6 @@ public class OfertaController : ControllerBase
         }
         
         if (liquidez == true) {
-            Console.WriteLine("entrou aqui 2");
 
             var ofertasDAOLiquidez = _ofertaService.ObterTodasOfertas()
                 .Where(o => o.Liquidez == true)
@@ -59,7 +58,22 @@ public class OfertaController : ControllerBase
 
             return ofertasDTOLiquidez;  
         }
-                
+        
+        if (aprovada == true) {
+
+            var ofertasDAOAprovada = _ofertaService.ObterTodasOfertas()
+                .Where(o => o.Aprovada == true)
+                .ToList();
+
+            var ofertasDTOAprovada = ofertasDAOAprovada.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
+
+            if (ofertasDTOAprovada.Count() == 0)
+            {
+                return NotFound("Nenhuma oferta encontrada aprovada.");
+            }
+
+            return ofertasDTOAprovada;  
+        }
         // if (liquidez == false) {
         //     Console.WriteLine("entrou aqui 2r");
 
@@ -78,9 +92,6 @@ public class OfertaController : ControllerBase
         // }
 
         if(nome != "" && liquidez == true){
-            Console.WriteLine("entrou aqui 3");
-
-
             var ofertasDAOLiquidezENome = _ofertaService.ObterTodasOfertas()
             .Where(o => o.Liquidez == true && o.NomeTitulo != "" && o.NomeTitulo!.ToLower().Contains(nome.ToLower()))
             .ToList();
@@ -97,7 +108,6 @@ public class OfertaController : ControllerBase
 
         
         if(nome != "" && liquidez == false){
-            Console.WriteLine("entrou aqui 3");
             var ofertasDAOLiquidezENome = _ofertaService.ObterTodasOfertas()
             .Where(o => o.Liquidez == false && o.NomeTitulo != "" && o.NomeTitulo!.ToLower().Contains(nome.ToLower()))
             .ToList();
@@ -111,9 +121,6 @@ public class OfertaController : ControllerBase
 
             return ofertasDTOLiquidezENome;
         }
-
-        Console.WriteLine("entrou aqui 4");
-
 
         var ofertasDAO = _ofertaService.ObterTodasOfertas();
         var ofertasDTO = new List<OfertaDTOGet>();

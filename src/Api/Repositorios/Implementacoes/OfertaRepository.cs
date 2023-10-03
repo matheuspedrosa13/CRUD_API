@@ -54,7 +54,7 @@ public class OfertaRepository  : IOfertaRepository
             var ofertaExistente = _ofertas.FirstOrDefault(o => o.Id == id);
             if (ofertaExistente != null)
             {
-                _ofertas.Remove(ofertaExistente);
+                ofertaExistente.Aprovada = false;
             }
         }
     }
