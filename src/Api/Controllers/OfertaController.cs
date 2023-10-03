@@ -33,7 +33,7 @@ public class OfertaController : ControllerBase
     }
     
     [HttpGet("/ofertas/{id}")]
-    public ActionResult<OfertaDTOGet> GetOfertaPorId(int id)
+    public ActionResult<OfertaDTOGet> BuscarOfertaPorId(int id)
     {
         var ofertaDAO = _ofertaService.ObterOfertaPorId(id);
 
