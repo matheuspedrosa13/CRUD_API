@@ -3,7 +3,6 @@ using CrudOfertas.Api.Repositorios.DAOs;
 using CrudOfertas.Api.Servicos.DTOs;
 using CrudOfertas.Api.Servicos.Interfaces;
 using CrudOfertas.Api.Servicos;
-using CrudOfertas.Api.Controllers.Requisicoes.Read;
 namespace CrudOfertas.Api.Controllers;
 
 [ApiController]
@@ -21,7 +20,16 @@ public class OfertaController : ControllerBase
     [HttpGet("/ofertas")]
     public ActionResult<List<OfertaDTOGet>> GetOfertas()
     {
-        return RequisicoesDeLeitura.TodasAsOfertas(_ofertaService);
+        var ofertasDAO = _ofertaService.ObterTodasOfertas();
+        var ofertasDTO = new List<OfertaDTOGet>();
+
+        foreach (var ofertaDAO in ofertasDAO)
+        {
+            var ofertaDTO = ConverterDAOemDTO.Converter(ofertaDAO);
+            ofertasDTO.Add(ofertaDTO);
+        }
+
+        return ofertasDTO;
     }
     
     [HttpGet("/ofertas/{id}")]
@@ -38,6 +46,24 @@ public class OfertaController : ControllerBase
 
         return Ok(ofertaDTO); 
     }
+
+    [HttpGet("/ofertas/{nome}")]
+    public ActionResult<List<OfertaDTOGet>> BuscarOfertasPorNome(string nome)
+    {
+        var ofertasDAO = _ofertaService.ObterTodasOfertas()
+            .Where(o => o.NomeTitulo!.ToLower().Contains(nome.ToLower()))
+            .ToList();
+
+        var ofertasDTO = ofertasDAO.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
+
+        if (ofertasDTO.Count == 0)
+        {
+            return NotFound("Nenhuma oferta encontrada com o nome especificado.");
+        }
+
+        return ofertasDTO;
+    }
+
 
     [HttpPost("/ofertas")]
     public ActionResult<string> AdicionarOferta([FromBody] OfertaDTOPost ofertaDTO)

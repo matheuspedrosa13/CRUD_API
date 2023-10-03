@@ -3,7 +3,7 @@ using CrudOfertas.Api.Repositorios.DAOs;
 
 namespace CrudOfertas.Api.Servicos
 {
-    public class ConverterDTOemDAOPost
+    public class ConverterDTOemDAO
     {
         public static OfertaDAO Converter(OfertaDTOPost ofertaDTO)
         {

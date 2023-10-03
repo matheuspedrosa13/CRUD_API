@@ -28,7 +28,7 @@ public class OfertaService : IOfertaService
         AdicionandoCoisasFixasEmOferta.AdicionadoPadraoOferta(oferta);
         if (ValidarOferta.Validar(oferta))
         {
-            OfertaDAO ofertaDAO = ConverterDTOemDAOPost.Converter(oferta);
+            OfertaDAO ofertaDAO = ConverterDTOemDAO.Converter(oferta);
             _ofertaRepository.AdicionarOferta(ofertaDAO);
         }
         else
