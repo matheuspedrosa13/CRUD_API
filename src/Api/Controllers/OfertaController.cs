@@ -22,6 +22,99 @@ public class OfertaController : ControllerBase
     [HttpGet]
     public ActionResult<List<OfertaDTOGet>> GetOfertas([FromQuery] ParametrosBuscaOferta parametrosBuscaOferta)
     {
+        var nome = parametrosBuscaOferta.nome;
+        var liquidez = parametrosBuscaOferta.liquidez;
+        Console.WriteLine(liquidez);
+        if(nome != ""){
+            Console.WriteLine(nome);
+            Console.WriteLine("entrou aqui 1");
+            var ofertasDAONome = _ofertaService.ObterTodasOfertas()
+            .Where(o => o.NomeTitulo!.ToLower().Contains(nome.ToLower()))
+            .ToList();
+
+            var ofertasDTONome = ofertasDAONome.Select(ofertasDAO => ConverterDAOemDTO.Converter(ofertasDAO)).ToList();
+
+            if (ofertasDTONome.Count() == 0)
+            {
+                return NotFound("Nenhuma oferta encontrada com o nome especificado.");
+            }
+
+            return ofertasDTONome;
+
+        }
+        
+        if (liquidez == true) {
+            Console.WriteLine("entrou aqui 2");
+
+            var ofertasDAOLiquidez = _ofertaService.ObterTodasOfertas()
+                .Where(o => o.Liquidez == true)
+                .ToList();
+
+            var ofertasDTOLiquidez = ofertasDAOLiquidez.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
+
+            if (ofertasDTOLiquidez.Count() == 0)
+            {
+                return NotFound("Nenhuma oferta encontrada com essa liquidez.");
+            }
+
+            return ofertasDTOLiquidez;  
+        }
+                
+        // if (liquidez == false) {
+        //     Console.WriteLine("entrou aqui 2r");
+
+        //     var ofertasDAOLiquidez = _ofertaService.ObterTodasOfertas()
+        //         .Where(o => o.Liquidez == false)
+        //         .ToList();
+
+        //     var ofertasDTOLiquidez = ofertasDAOLiquidez.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
+
+        //     if (ofertasDTOLiquidez.Count() == 0)
+        //     {
+        //         return NotFound("Nenhuma oferta encontrada com essa liquidez.");
+        //     }
+
+        //     return ofertasDTOLiquidez;  
+        // }
+
+        if(nome != "" && liquidez == true){
+            Console.WriteLine("entrou aqui 3");
+
+
+            var ofertasDAOLiquidezENome = _ofertaService.ObterTodasOfertas()
+            .Where(o => o.Liquidez == true && o.NomeTitulo != "" && o.NomeTitulo!.ToLower().Contains(nome.ToLower()))
+            .ToList();
+
+            var ofertasDTOLiquidezENome = ofertasDAOLiquidezENome.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
+
+            if (ofertasDTOLiquidezENome.Count() == 0)
+            {
+                return NotFound("Nenhuma oferta encontrada com a liquidez e nome especificados.");
+            }
+
+            return ofertasDTOLiquidezENome;
+        }
+
+        
+        if(nome != "" && liquidez == false){
+            Console.WriteLine("entrou aqui 3");
+            var ofertasDAOLiquidezENome = _ofertaService.ObterTodasOfertas()
+            .Where(o => o.Liquidez == false && o.NomeTitulo != "" && o.NomeTitulo!.ToLower().Contains(nome.ToLower()))
+            .ToList();
+
+            var ofertasDTOLiquidezENome = ofertasDAOLiquidezENome.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
+
+            if (ofertasDTOLiquidezENome.Count() == 0)
+            {
+                return NotFound("Nenhuma oferta encontrada com a liquidez e nome especificados.");
+            }
+
+            return ofertasDTOLiquidezENome;
+        }
+
+        Console.WriteLine("entrou aqui 4");
+
+
         var ofertasDAO = _ofertaService.ObterTodasOfertas();
         var ofertasDTO = new List<OfertaDTOGet>();
 
@@ -49,12 +142,12 @@ public class OfertaController : ControllerBase
         return Ok(ofertaDTO); 
     }
 
+
     [HttpPost]
     public ActionResult<string> AdicionarOferta([FromBody] OfertaDTOPost ofertaDTO)
     {
         try
         {
-            // List<OfertaDTOGet> ofertas = GetOfertas().Value!;
             var ofertas = _ofertaService.ObterTodasOfertas();
             int quantidadeDeOfertas = ofertas.Count;
             ofertaDTO.Id = quantidadeDeOfertas + 1;
@@ -84,19 +177,9 @@ public class OfertaController : ControllerBase
     }
 
     [HttpDelete("/{id}")]
-    public ActionResult RemoverOferta(int id)
+    public ActionResult DesaprovarOferta(int id)
     {
         _ofertaService.RemoverOferta(id);
         return Ok("Funfou"); // Retorna HTTP 204 (Sem conteúdo) se a remoção for bem-sucedida.
     }
 }
-
-
-        //OkResult: Representa uma resposta HTTP 200 (OK).
-        //JsonResult: Permite retornar um objeto serializado como JSON.
-        //ViewResult: Usado para retornar uma página HTML renderizada (geralmente uma View em MVC).
-        //RedirectResult: Utilizado para redirecionar para outra URL.
-        //NotFoundResult: Indica uma resposta HTTP 404 (não encontrado).
-        //BadRequestResult: Indica uma resposta HTTP 400 (solicitação inválida).
-        //UnauthorizedResult: Indica uma resposta HTTP 401 (não autorizado) e assim por diante.
-        //IActionResult: Retorna o que vier para ele
