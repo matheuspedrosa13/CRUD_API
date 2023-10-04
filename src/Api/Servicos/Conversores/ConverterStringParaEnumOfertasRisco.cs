@@ -1,6 +1,6 @@
 using CrudOfertas.Api.Repositorios.Enuns;
 
-namespace CrudOfertas.Api.Servicos;
+namespace CrudOfertas.Api.Servicos.Conversores;
 public class ConverterStringParaEnumOfertasRisco
 {
     public static RiscoOferta ConverterStringParaEnum(string risco)

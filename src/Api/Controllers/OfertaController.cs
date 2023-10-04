@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using CrudOfertas.Api.Repositorios.DAOs;
 using CrudOfertas.Api.Servicos.DTOs;
 using CrudOfertas.Api.Servicos.Interfaces;
-using CrudOfertas.Api.Servicos;
+using CrudOfertas.Api.Servicos.Conversores;
 using CrudOfertas.Api.Controllers.Requisicoes;
 
 namespace CrudOfertas.Api.Controllers;

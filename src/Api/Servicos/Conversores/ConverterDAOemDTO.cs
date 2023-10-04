@@ -1,6 +1,6 @@
 using CrudOfertas.Api.Servicos.DTOs;
 using CrudOfertas.Api.Repositorios.DAOs;
-namespace CrudOfertas.Api.Servicos;
+namespace CrudOfertas.Api.Servicos.Conversores;
 public class ConverterDAOemDTO
 {
     public static OfertaDTOGet Converter(OfertaDAO ofertaDAO)

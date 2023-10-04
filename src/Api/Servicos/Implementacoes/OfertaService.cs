@@ -4,7 +4,7 @@ using CrudOfertas.Api.Repositorios.DAOs;
 using CrudOfertas.Api.Servico;
 using CrudOfertas.Api.Controllers.Requisicoes;
 using CrudOfertas.Api.Servicos.DTOs;
-
+using CrudOfertas.Api.Servicos.Conversores;
 namespace CrudOfertas.Api.Servicos.Implementacos;
 public class OfertaService : IOfertaService
 {
