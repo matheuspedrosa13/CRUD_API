@@ -22,117 +22,39 @@ public class OfertaController : ControllerBase
     [HttpGet]
     public ActionResult<List<OfertaDTOGet>> GetOfertas([FromQuery] ParametrosBuscaOferta parametrosBuscaOferta)
     {
-        var nome = parametrosBuscaOferta.nome;
-        var liquidez = parametrosBuscaOferta.liquidez;
-        var aprovada = parametrosBuscaOferta.aprovada;
-        Console.WriteLine(liquidez);
-        if(nome != ""){
-            Console.WriteLine(nome);
-            var ofertasDAONome = _ofertaService.ObterTodasOfertas()
-            .Where(o => o.NomeTitulo!.ToLower().Contains(nome.ToLower()))
-            .ToList();
+        var todasOfertasDAO = _ofertaService.ObterTodasOfertas();
 
-            var ofertasDTONome = ofertasDAONome.Select(ofertasDAO => ConverterDAOemDTO.Converter(ofertasDAO)).ToList();
-
-            if (ofertasDTONome.Count() == 0)
-            {
-                return NotFound("Nenhuma oferta encontrada com o nome especificado.");
-            }
-
-            return ofertasDTONome;
-
-        }
-        
-        if (liquidez == true) {
-
-            var ofertasDAOLiquidez = _ofertaService.ObterTodasOfertas()
-                .Where(o => o.Liquidez == true)
-                .ToList();
-
-            var ofertasDTOLiquidez = ofertasDAOLiquidez.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
-
-            if (ofertasDTOLiquidez.Count() == 0)
-            {
-                return NotFound("Nenhuma oferta encontrada com essa liquidez.");
-            }
-
-            return ofertasDTOLiquidez;  
-        }
-        
-        if (aprovada == true) {
-
-            var ofertasDAOAprovada = _ofertaService.ObterTodasOfertas()
-                .Where(o => o.Aprovada == true)
-                .ToList();
-
-            var ofertasDTOAprovada = ofertasDAOAprovada.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
-
-            if (ofertasDTOAprovada.Count() == 0)
-            {
-                return NotFound("Nenhuma oferta encontrada aprovada.");
-            }
-
-            return ofertasDTOAprovada;  
-        }
-        // if (liquidez == false) {
-        //     Console.WriteLine("entrou aqui 2r");
-
-        //     var ofertasDAOLiquidez = _ofertaService.ObterTodasOfertas()
-        //         .Where(o => o.Liquidez == false)
-        //         .ToList();
-
-        //     var ofertasDTOLiquidez = ofertasDAOLiquidez.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
-
-        //     if (ofertasDTOLiquidez.Count() == 0)
-        //     {
-        //         return NotFound("Nenhuma oferta encontrada com essa liquidez.");
-        //     }
-
-        //     return ofertasDTOLiquidez;  
-        // }
-
-        if(nome != "" && liquidez == true){
-            var ofertasDAOLiquidezENome = _ofertaService.ObterTodasOfertas()
-            .Where(o => o.Liquidez == true && o.NomeTitulo != "" && o.NomeTitulo!.ToLower().Contains(nome.ToLower()))
-            .ToList();
-
-            var ofertasDTOLiquidezENome = ofertasDAOLiquidezENome.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
-
-            if (ofertasDTOLiquidezENome.Count() == 0)
-            {
-                return NotFound("Nenhuma oferta encontrada com a liquidez e nome especificados.");
-            }
-
-            return ofertasDTOLiquidezENome;
-        }
-
-        
-        if(nome != "" && liquidez == false){
-            var ofertasDAOLiquidezENome = _ofertaService.ObterTodasOfertas()
-            .Where(o => o.Liquidez == false && o.NomeTitulo != "" && o.NomeTitulo!.ToLower().Contains(nome.ToLower()))
-            .ToList();
-
-            var ofertasDTOLiquidezENome = ofertasDAOLiquidezENome.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
-
-            if (ofertasDTOLiquidezENome.Count() == 0)
-            {
-                return NotFound("Nenhuma oferta encontrada com a liquidez e nome especificados.");
-            }
-
-            return ofertasDTOLiquidezENome;
-        }
-
-        var ofertasDAO = _ofertaService.ObterTodasOfertas();
-        var ofertasDTO = new List<OfertaDTOGet>();
-
-        foreach (var ofertaDAO in ofertasDAO)
+        if (!string.IsNullOrWhiteSpace(parametrosBuscaOferta.nome))
         {
-            var ofertaDTO = ConverterDAOemDTO.Converter(ofertaDAO);
-            ofertasDTO.Add(ofertaDTO);
+            todasOfertasDAO = todasOfertasDAO
+                .Where(o => o.NomeTitulo != null && o.NomeTitulo.ToLower().Contains(parametrosBuscaOferta.nome.ToLower()))
+                .ToList();
         }
 
-        return ofertasDTO;
+        if (parametrosBuscaOferta.liquidez.HasValue)
+        {
+            todasOfertasDAO = todasOfertasDAO
+                .Where(o => o.Liquidez == parametrosBuscaOferta.liquidez.Value)
+                .ToList();
+        }
+
+        if (parametrosBuscaOferta.aprovada.HasValue)
+        {
+            todasOfertasDAO = todasOfertasDAO
+                .Where(o => o.Aprovada == parametrosBuscaOferta.aprovada.Value)
+                .ToList();
+        }
+
+        var todasOfertasDTO = todasOfertasDAO.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
+
+        if (todasOfertasDTO.Count == 0)
+        {
+            return NotFound("Nenhuma oferta encontrada.");
+        }
+
+        return todasOfertasDTO;
     }
+
     
     [HttpGet("/{id}")]
     public ActionResult<OfertaDTOGet> BuscarOfertaPorId(int id)
