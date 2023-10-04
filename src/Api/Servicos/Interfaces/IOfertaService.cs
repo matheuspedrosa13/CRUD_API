@@ -1,6 +1,8 @@
 using CrudOfertas.Api.Repositorios.DAOs;
 using CrudOfertas.Api.Servicos.DTOs;
 namespace CrudOfertas.Api.Servicos.Interfaces;
+using CrudOfertas.Api.Controllers.Requisicoes;
+
 public interface IOfertaService
 {
     List<OfertaDAO> ObterTodasOfertas();
@@ -8,4 +10,5 @@ public interface IOfertaService
     void AdicionarOferta(OfertaDTOPost oferta);
     void AtualizarOferta(OfertaDAO oferta);
     void RemoverOferta(int id);
+    List<OfertaDTOGet> ofertaVerificada(List<OfertaDAO> todasOfertasDAO, ParametrosBuscaOferta parametrosBuscaOferta);
 }

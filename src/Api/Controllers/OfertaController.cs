@@ -23,39 +23,14 @@ public class OfertaController : ControllerBase
     public ActionResult<List<OfertaDTOGet>> GetOfertas([FromQuery] ParametrosBuscaOferta parametrosBuscaOferta)
     {
         var todasOfertasDAO = _ofertaService.ObterTodasOfertas();
-
-        if (!string.IsNullOrWhiteSpace(parametrosBuscaOferta.nome))
-        {
-            todasOfertasDAO = todasOfertasDAO
-                .Where(o => o.NomeTitulo != null && o.NomeTitulo.ToLower().Contains(parametrosBuscaOferta.nome.ToLower()))
-                .ToList();
+        List<OfertaDTOGet> listaDTOGet = _ofertaService.ofertaVerificada(todasOfertasDAO, parametrosBuscaOferta);
+        if(listaDTOGet.Count == 0){
+            return NotFound("Nenhuma oferta encontrada");
         }
-
-        if (parametrosBuscaOferta.liquidez.HasValue)
-        {
-            todasOfertasDAO = todasOfertasDAO
-                .Where(o => o.Liquidez == parametrosBuscaOferta.liquidez.Value)
-                .ToList();
-        }
-
-        if (parametrosBuscaOferta.aprovada.HasValue)
-        {
-            todasOfertasDAO = todasOfertasDAO
-                .Where(o => o.Aprovada == parametrosBuscaOferta.aprovada.Value)
-                .ToList();
-        }
-
-        var todasOfertasDTO = todasOfertasDAO.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
-
-        if (todasOfertasDTO.Count == 0)
-        {
-            return NotFound("Nenhuma oferta encontrada.");
-        }
-
-        return todasOfertasDTO;
+        return listaDTOGet;
     }
 
-    
+
     [HttpGet("/{id}")]
     public ActionResult<OfertaDTOGet> BuscarOfertaPorId(int id)
     {
