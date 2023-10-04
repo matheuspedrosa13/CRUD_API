@@ -1,6 +1,6 @@
 using CrudOfertas.Api.Servicos.DTOs;
 using CrudOfertas.Api.Repositorios.DAOs;
-
+using CrudOfertas.Api.Servicos;
 namespace CrudOfertas.Api.Servicos
 {
     public class ConverterDTOemDAO
@@ -28,7 +28,7 @@ namespace CrudOfertas.Api.Servicos
                 Indexador = ofertaDTO.Indexador,
                 NomeEmissor = ofertaDTO.NomeEmissor,
                 NomeTitulo = ofertaDTO.NomeTitulo,
-                Risco = ofertaDTO.Risco,
+                Risco = ConverterStringParaEnumOfertasRisco.ConverterStringParaEnum(ofertaDTO.Risco!),
                 GarantidoPeloFGC = ofertaDTO.GarantidoPeloFGC,
                 Descricao = ofertaDTO.Descricao,
                 DataCriacao = ofertaDTO.DataCriacao,

@@ -1,5 +1,7 @@
-namespace CrudOfertas.Api.Infraestrutura;
+using CrudOfertas.Api.Repositorios.Enuns;
 using CrudOfertas.Api.Repositorios.DAOs;
+namespace CrudOfertas.Api.Infraestrutura;
+
 public static class OfertaDatabase
 {
     private static List<OfertaDAO> database = new List<OfertaDAO>
@@ -24,7 +26,7 @@ public static class OfertaDatabase
             Indexador = "CDI",
             NomeEmissor = "Emissor A",
             NomeTitulo = "CDB",
-            Risco = "Baixo",
+            Risco = RiscoOferta.BAIXO,
             GarantidoPeloFGC = true,
             Descricao = "Descrição da oferta 1",
             DataCriacao = DateTime.Parse("2023-09-29T10:46:44.6683519-03:00"),
@@ -51,7 +53,7 @@ public static class OfertaDatabase
             Indexador = "IPCA",
             NomeEmissor = "Emissor B",
             NomeTitulo = "LCI",
-            Risco = "Médio",
+            Risco = RiscoOferta.MEDIO,
             GarantidoPeloFGC = false,
             Descricao = "Descrição da oferta 2",
             DataCriacao  = DateTime.Parse("2023-09-29T10:46:44.6683519-03:00"),

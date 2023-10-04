@@ -26,7 +26,7 @@ public class ConverterDAOemDTO
             Indexador = ofertaDAO.Indexador,
             NomeEmissor = ofertaDAO.NomeEmissor,
             NomeTitulo = ofertaDAO.NomeTitulo,
-            Risco = ofertaDAO.Risco,
+            Risco = ofertaDAO.Risco.ToString(),
             GarantidoPeloFGC = ofertaDAO.GarantidoPeloFGC,
             Descricao = ofertaDAO.Descricao,
             DataCriacao = ofertaDAO.DataCriacao,

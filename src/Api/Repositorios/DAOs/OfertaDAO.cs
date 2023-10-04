@@ -1,3 +1,4 @@
+using CrudOfertas.Api.Repositorios.Enuns;
 namespace CrudOfertas.Api.Repositorios.DAOs;
 
 public class OfertaDAO
@@ -21,7 +22,7 @@ public class OfertaDAO
     public string ?Indexador { get; set; }
     public string ?NomeEmissor { get; set; }
     public string ?NomeTitulo { get; set; }
-    public string ?Risco { get; set; }
+    public RiscoOferta ?Risco { get; set; }
     public bool GarantidoPeloFGC { get; set; }
     public string ?Descricao { get; set; }
     public DateTime DataCriacao { get; set; }
