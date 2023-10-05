@@ -41,14 +41,7 @@ public class OfertaService : IOfertaService
 
     public void AtualizarOferta(OfertaDAO oferta)
     {
-        // if (ValidarOferta.Validar(oferta))
-        // {
-        //     _ofertaRepository.AtualizarOferta(oferta);
-        // }
-        // else
-        // {
-        //     throw new ArgumentException("Oferta inválida. Verifique os dados.");
-        // }
+        
     }
 
     public void RemoverOferta(int id)
@@ -57,24 +50,24 @@ public class OfertaService : IOfertaService
     }
 
     public List<OfertaDTOGet> ofertaVerificada(List<OfertaDAO> todasOfertasDAO, ParametrosBuscaOferta parametrosBuscaOferta){
-        if (!string.IsNullOrWhiteSpace(parametrosBuscaOferta.nome))
+        if (!string.IsNullOrWhiteSpace(parametrosBuscaOferta.Nome))
         {
             todasOfertasDAO = todasOfertasDAO
-                .Where(o => o.NomeTitulo != null && o.NomeTitulo.ToLower().Contains(parametrosBuscaOferta.nome.ToLower()))
+                .Where(o => o.NomeTitulo != null && o.NomeTitulo.ToLower().Contains(parametrosBuscaOferta.Nome.ToLower()))
                 .ToList();
         }
 
-        if (parametrosBuscaOferta.liquidez.HasValue)
+        if (parametrosBuscaOferta.Liquidez.HasValue)
         {
             todasOfertasDAO = todasOfertasDAO
-                .Where(o => o.Liquidez == parametrosBuscaOferta.liquidez.Value)
+                .Where(o => o.Liquidez == parametrosBuscaOferta.Liquidez!.Value)
                 .ToList();
         }
 
-        if (parametrosBuscaOferta.aprovada.HasValue)
+        if (parametrosBuscaOferta.Aprovada.HasValue)
         {
             todasOfertasDAO = todasOfertasDAO
-                .Where(o => o.Aprovada == parametrosBuscaOferta.aprovada.Value)
+                .Where(o => o.Aprovada == parametrosBuscaOferta.Aprovada.Value)
                 .ToList();
         }
 
@@ -87,5 +80,4 @@ public class OfertaService : IOfertaService
 
         return todasOfertasDTO;
     }
-
 }

@@ -62,23 +62,15 @@ public class OfertaController : ControllerBase
         {
             return BadRequest(ex.Message);
         }
-    }
-
-
-    [HttpPut("/{id}")]
-    public ActionResult AtualizarOferta(int id, OfertaDAO oferta)
+        }
+    [HttpPut("atualizar")]
+    public ActionResult AtualizarOferta([FromQuery] ParametrosAtualizarOferta parametrosAtualizar, IOfertaService _ofertaService)
     {
-        oferta.Id = id; // Define o ID da oferta com base no parâmetro da rota.
-        try
-        {
-            _ofertaService.AtualizarOferta(oferta);
-            return NoContent(); // Retorna HTTP 204 (Sem conteúdo) se a atualização for bem-sucedida.
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(ex.Message); // Retorna HTTP 400 com a mensagem de erro se a oferta for inválida.
-        }
+        return Ok("aaaaaaaaaaaaaaaaa");
     }
+
+
+
 
     [HttpDelete("/{id}")]
     public ActionResult DesaprovarOferta(int id)
