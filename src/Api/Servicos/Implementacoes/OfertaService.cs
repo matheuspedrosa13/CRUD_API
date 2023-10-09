@@ -43,8 +43,6 @@ public class OfertaService : IOfertaService
         _ofertaRepository.AtualizarOferta(id, colunasAtualizadas);
     }
 
-
-
     public void RemoverOferta(int id)
     {
         _ofertaRepository.RemoverOferta(id);

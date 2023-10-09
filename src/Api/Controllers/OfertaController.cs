@@ -64,25 +64,17 @@ public class OfertaController : ControllerBase
         }
     }
 
-    [HttpPatch("{id}")]
+    [HttpPatch("/{id}")]
     public IActionResult AtualizarOferta(int id, [FromBody] Dictionary<string, object> colunasAtualizadas)
     {
         try
         {
             _ofertaService.AtualizarOferta(id, colunasAtualizadas);
-            return Ok("Oferta atualizada com sucesso.");
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest($"Erro ao atualizar a oferta: {ex.Message}");
-        }
-        catch (InvalidOperationException ex)
-        {
-            return BadRequest($"Erro ao atualizar a oferta: {ex.Message}");
+            return Ok("Oferta atualizada com sucesso");
         }
         catch (Exception ex)
         {
-            return BadRequest($"Erro ao atualizar a oferta: {ex.Message}");
+            return BadRequest(ex.Message);
         }
     }
 
