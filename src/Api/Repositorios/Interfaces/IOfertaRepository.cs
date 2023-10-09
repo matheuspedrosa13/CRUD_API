@@ -1,5 +1,4 @@
 using CrudOfertas.Api.Repositorios.DAOs;
-using CrudOfertas.Api.Servicos.DTOs;
 
 namespace CrudOfertas.Api.Repositorios.Interfaces;
 public interface IOfertaRepository
@@ -7,7 +6,7 @@ public interface IOfertaRepository
     List<OfertaDAO> ObterTodasOfertas();
     OfertaDAO ObterOfertaPorId(int id);
     void AdicionarOferta(OfertaDAO oferta);
-    void AtualizarOferta(OfertaDAO oferta);
+    void AtualizarOferta(int id, Dictionary<string, object> colunasAtualizadas);
     void RemoverOferta(int id);
     int TamanhoDatabase();
 }

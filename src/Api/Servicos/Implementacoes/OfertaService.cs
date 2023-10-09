@@ -38,11 +38,12 @@ public class OfertaService : IOfertaService
             throw new ArgumentException("Oferta inválida. Verifique os dados.");
         }
     }
-
-    public void AtualizarOferta(OfertaDAO oferta)
+    public void AtualizarOferta(int id, Dictionary<string, object> colunasAtualizadas)
     {
-        
+        _ofertaRepository.AtualizarOferta(id, colunasAtualizadas);
     }
+
+
 
     public void RemoverOferta(int id)
     {
@@ -61,13 +62,6 @@ public class OfertaService : IOfertaService
         {
             todasOfertasDAO = todasOfertasDAO
                 .Where(o => o.Liquidez == parametrosBuscaOferta.Liquidez!.Value)
-                .ToList();
-        }
-
-        if (parametrosBuscaOferta.Aprovada.HasValue)
-        {
-            todasOfertasDAO = todasOfertasDAO
-                .Where(o => o.Aprovada == parametrosBuscaOferta.Aprovada.Value)
                 .ToList();
         }
 

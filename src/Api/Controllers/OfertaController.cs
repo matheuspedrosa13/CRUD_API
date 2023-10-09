@@ -62,20 +62,35 @@ public class OfertaController : ControllerBase
         {
             return BadRequest(ex.Message);
         }
-        }
-    [HttpPut("atualizar")]
-    public ActionResult AtualizarOferta([FromQuery] ParametrosAtualizarOferta parametrosAtualizar, IOfertaService _ofertaService)
-    {
-        return Ok("aaaaaaaaaaaaaaaaa");
     }
 
-
+    [HttpPatch("{id}")]
+    public IActionResult AtualizarOferta(int id, [FromBody] Dictionary<string, object> colunasAtualizadas)
+    {
+        try
+        {
+            _ofertaService.AtualizarOferta(id, colunasAtualizadas);
+            return Ok("Oferta atualizada com sucesso.");
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest($"Erro ao atualizar a oferta: {ex.Message}");
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest($"Erro ao atualizar a oferta: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Erro ao atualizar a oferta: {ex.Message}");
+        }
+    }
 
 
     [HttpDelete("/{id}")]
     public ActionResult DesaprovarOferta(int id)
     {
         _ofertaService.RemoverOferta(id);
-        return Ok("Funfou"); // Retorna HTTP 204 (Sem conteúdo) se a remoção for bem-sucedida.
+        return Ok("Funfou");
     }
 }
