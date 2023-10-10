@@ -27,16 +27,10 @@ public class OfertaService : IOfertaService
 
     public void AdicionarOferta(OfertaDTOPost oferta)
     {
+        ValidarOferta.ValidarComExcecao(oferta);
         AdicionandoCoisasFixasEmOferta.AdicionadoPadraoOferta(oferta);
-        if (ValidarOferta.Validar(oferta))
-        {
-            OfertaDAO ofertaDAO = ConverterDTOemDAO.Converter(oferta);
-            _ofertaRepository.AdicionarOferta(ofertaDAO);
-        }
-        else
-        {
-            throw new ArgumentException("Oferta inválida. Verifique os dados.");
-        }
+        OfertaDAO ofertaDAO = ConverterDTOemDAO.Converter(oferta);
+        _ofertaRepository.AdicionarOferta(ofertaDAO);
     }
     public void AtualizarOferta(int id, Dictionary<string, object> colunasAtualizadas)
     {

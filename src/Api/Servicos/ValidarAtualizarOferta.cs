@@ -11,11 +11,18 @@ public class ValidarAtualizarOferta
 
             foreach (var colunaAtualizada in colunasAtualizadas)
             {
+
                 switch (colunaAtualizada.Key)
                 {
                     case "porcentagemEmissao":
+                        Console.WriteLine("asa");
+                        Console.WriteLine(ofertaExistente.Id);
+
                         if (colunaAtualizada.Value is decimal porcentagemEmissao)
+                        
                         {
+                            Console.WriteLine("asa");
+
                             ofertaExistente.PorcentagemEmissao = porcentagemEmissao;
                         }
                         break;

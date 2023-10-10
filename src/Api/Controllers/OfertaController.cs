@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
-using CrudOfertas.Api.Repositorios.DAOs;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
 using CrudOfertas.Api.Servicos.DTOs;
 using CrudOfertas.Api.Servicos.Interfaces;
 using CrudOfertas.Api.Servicos.Conversores;
 using CrudOfertas.Api.Controllers.Requisicoes;
+using CrudOfertas.Api.Excecoes;
 
 namespace CrudOfertas.Api.Controllers;
 
@@ -61,6 +64,15 @@ public class OfertaController : ControllerBase
         catch (ArgumentException ex)
         {
             return BadRequest(ex.Message);
+        }
+        catch (ErrosDeValidacaoException erro)
+        {
+            var options1 = new JsonSerializerOptions
+            {
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                WriteIndented = true
+            };
+            return BadRequest(JsonSerializer.Serialize(erro.Erros, options1));
         }
     }
 
