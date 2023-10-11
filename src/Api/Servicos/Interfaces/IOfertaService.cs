@@ -8,7 +8,7 @@ public interface IOfertaService
     List<OfertaDAO> ObterTodasOfertas();
     OfertaDAO ObterOfertaPorId(int id);
     void AdicionarOferta(OfertaDTOPost oferta);
-    void AtualizarOferta(int id, Dictionary<string, object> colunasAtualizadas);
+    bool AtualizarOferta(int id, OfertaDTOPut ofertaDto);
     void RemoverOferta(int id);
     List<OfertaDTOGet> ofertaVerificada(List<OfertaDAO> todasOfertasDAO, ParametrosBuscaOferta parametrosBuscaOferta);
 

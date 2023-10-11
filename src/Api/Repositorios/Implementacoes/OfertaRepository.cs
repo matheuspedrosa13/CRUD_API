@@ -3,6 +3,7 @@ using CrudOfertas.Api.Repositorios.DAOs;
 using CrudOfertas.Api.Servicos;
 using CrudOfertas.Api.Infraestrutura;
 using CrudOfertas.Api.Repositorios.Interfaces;
+using CrudOfertas.Api.Servicos.DTOs;
 
 public class OfertaRepository  : IOfertaRepository
 {
@@ -34,14 +35,10 @@ public class OfertaRepository  : IOfertaRepository
         return id;
     }
 
-    public void AtualizarOferta(int id, Dictionary<string, object> colunasAtualizadas)
+    public bool AtualizarOferta(int id, OfertaDAO ofertaDAO)
     {
-        OfertaDAO ofertaExistente = _ofertas.FirstOrDefault(o => o.Id == id)!;
-
-        if (ofertaExistente != null)
-        {
-            ValidarAtualizarOferta.ValidarOferta(ofertaExistente, colunasAtualizadas);
-        }
+        OfertaDatabase.ObterOfertas()[id - 1] = ofertaDAO;
+        return true;
     }
 
 

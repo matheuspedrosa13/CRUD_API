@@ -76,19 +76,13 @@ public class OfertaController : ControllerBase
         }
     }
 
-    [HttpPatch("/{id}")]
-    public IActionResult AtualizarOferta(int id, [FromBody] Dictionary<string, object> colunasAtualizadas)
+    [HttpPut("/{id}")]
+    public IActionResult UpdateExistentOffer(int id,[FromBody] OfertaDTOPut ofertaDTO)
     {
-        try
-        {
-            _ofertaService.AtualizarOferta(id, colunasAtualizadas);
-            return Ok("Oferta atualizada com sucesso");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        _ofertaService.AtualizarOferta(id, ofertaDTO);
+        return Ok("");
     }
+
 
 
     [HttpDelete("/{id}")]

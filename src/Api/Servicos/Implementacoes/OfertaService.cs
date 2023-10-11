@@ -32,10 +32,12 @@ public class OfertaService : IOfertaService
         OfertaDAO ofertaDAO = ConverterDTOemDAO.Converter(oferta);
         _ofertaRepository.AdicionarOferta(ofertaDAO);
     }
-    public void AtualizarOferta(int id, Dictionary<string, object> colunasAtualizadas)
+    public bool AtualizarOferta(int id, OfertaDTOPut ofertaDto)
     {
-        _ofertaRepository.AtualizarOferta(id, colunasAtualizadas);
+        _ofertaRepository.AtualizarOferta(id, ConverterDTOPutParaDAO.Converter(ofertaDto));
+        return true;
     }
+
 
     public void RemoverOferta(int id)
     {
