@@ -1,7 +1,8 @@
 using System.Text.Json.Serialization;
 
 namespace CrudOfertas.Api.Servicos.DTOs;
-public class OfertaDTOPost
+
+public class OfertaDTOPut
 {
     [JsonIgnore]
     public int Id { get; set; }
@@ -23,20 +24,17 @@ public class OfertaDTOPost
     public string ?Indexador { get; set; }
     public string ?NomeEmissor { get; set; }
     public string ?NomeTitulo { get; set; }
-    public string ?Risco { get; set; }
+    public string ?Risco    { get; set; }
     public bool GarantidoPeloFGC { get; set; }
     public string ?Descricao { get; set; }
-    [JsonIgnore]
     public string ?DescricaoOferta{ get; set; }
-    [JsonIgnore]
     public string ?DescricaoLiquidez{ get; set; }
-    [JsonIgnore]
     public string ?DescricaoRentabilidade{ get; set; }
-    [JsonIgnore]
     public string ?TipoProduto{ get; set; }
     [JsonIgnore]
     public DateTime DataCriacao { get; set; } 
-    [JsonIgnore]
+    [JsonIgnore]   
+
     public DateTime DataAtualizacao { get; set; } 
     [JsonIgnore]
     public bool Aprovada { get; set; }
