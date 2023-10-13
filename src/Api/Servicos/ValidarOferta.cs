@@ -102,12 +102,12 @@ public class ValidarOferta
 
     private static void ValidarHorarioDeNegociacao(List<ErrosDeValidacaoResposta> erros, DateTime horarioFimNegociacao, OfertaDTOPost ofertaDTO)
     {
-        if(horarioFimNegociacao <= ofertaDTO.HorarioFimNegociacao)
+        if(horarioFimNegociacao <= ofertaDTO.HorarioInicioNegociacao)
         {
             erros.Add(new ErrosDeValidacaoResposta()
             {
                 Campo = "HorarioFimNegociacao",
-                Mensagem = "Não pode ser menor ou igual a HorarioFimNegociacao"
+                Mensagem = "Não pode ser menor ou igual a HorarioInicioNegociacao"
             });
         }
     }

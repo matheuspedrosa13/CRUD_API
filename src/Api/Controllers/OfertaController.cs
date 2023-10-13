@@ -80,7 +80,7 @@ public class OfertaController : ControllerBase
     public IActionResult UpdateExistentOffer(int id,[FromBody] OfertaDTOPut ofertaDTO)
     {
         _ofertaService.AtualizarOferta(id, ofertaDTO);
-        return Ok("");
+        return Ok("aa");
     }
 
 

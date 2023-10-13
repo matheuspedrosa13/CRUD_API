@@ -27,14 +27,17 @@ public class OfertaDTOPut
     public string ?Risco    { get; set; }
     public bool GarantidoPeloFGC { get; set; }
     public string ?Descricao { get; set; }
+    [JsonIgnore]
     public string ?DescricaoOferta{ get; set; }
+    [JsonIgnore]
     public string ?DescricaoLiquidez{ get; set; }
+    [JsonIgnore]
     public string ?DescricaoRentabilidade{ get; set; }
+    [JsonIgnore]
     public string ?TipoProduto{ get; set; }
     [JsonIgnore]
     public DateTime DataCriacao { get; set; } 
-    [JsonIgnore]   
-
+    [JsonIgnore]
     public DateTime DataAtualizacao { get; set; } 
     [JsonIgnore]
     public bool Aprovada { get; set; }

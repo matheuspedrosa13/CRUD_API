@@ -4,10 +4,11 @@ using CrudOfertas.Api.Servicos.DTOs;
 
 public class ConverterDTOPutParaDAO
 {
-    public static OfertaDAO Converter(OfertaDTOPut ofertaPut)
+    public static OfertaDAO Converter(OfertaDTOPut ofertaPut, OfertaDTOGet ofertaPassada)
     {
         var ofertaDAO = new OfertaDAO
         {
+            Id = ofertaPassada.ID,
             PorcentagemEmissao = ofertaPut.PorcentagemEmissao,
             PorcentagemDistribuicao = ofertaPut.PorcentagemDistribuicao,
             TaxaEmissao = ofertaPut.TaxaEmissao,
@@ -29,9 +30,9 @@ public class ConverterDTOPutParaDAO
             Risco = ConverterStringParaEnumOfertasRisco.ConverterStringParaEnum(ofertaPut.Risco),
             GarantidoPeloFGC = ofertaPut.GarantidoPeloFGC,
             Descricao = ofertaPut.Descricao,
-            DataCriacao = ofertaPut.DataCriacao,
-            DataAtualizacao = ofertaPut.DataAtualizacao,
-            Aprovada = ofertaPut.Aprovada
+            DataCriacao = ofertaPassada.DataCriacao,
+            DataAtualizacao = DateTime.Now,
+            Aprovada = ofertaPassada.Aprovada
         };
 
         return ofertaDAO;

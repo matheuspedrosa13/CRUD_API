@@ -34,7 +34,8 @@ public class OfertaService : IOfertaService
     }
     public bool AtualizarOferta(int id, OfertaDTOPut ofertaDto)
     {
-        _ofertaRepository.AtualizarOferta(id, ConverterDTOPutParaDAO.Converter(ofertaDto));
+        OfertaDTOGet ofertaPassada = ConverterDAOemDTO.Converter(_ofertaRepository.ObterOfertaPorId(id));
+        _ofertaRepository.AtualizarOferta(id, ConverterDTOPutParaDAO.Converter(ofertaDto, ofertaPassada));
         return true;
     }
 
