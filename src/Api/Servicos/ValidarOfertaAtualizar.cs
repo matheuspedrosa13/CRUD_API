@@ -1,10 +1,12 @@
 using CrudOfertas.Api.Controllers.Respostas;
 using CrudOfertas.Api.Excecoes;
 using CrudOfertas.Api.Servicos.DTOs;
-namespace CrudOfertas.Api.Servico;
-public class ValidarOferta
+
+namespace CrudOfertas.Api.Servicos;
+
+public class ValidarOfertaAtualizar
 {
-    public static void ValidarComExcecao(OfertaDTOPost ofertaDTO)
+    public static void ValidarComExcecao(OfertaDTOPut ofertaDTO)
     {
         List<ErrosDeValidacaoResposta> erros = new List<ErrosDeValidacaoResposta>();
         ValidarSeMaximoResgateMaiorQueZero(erros, ofertaDTO.MaximoResgate, ofertaDTO);
@@ -18,17 +20,19 @@ public class ValidarOferta
         ValidarSeMaximoAplicacaoMaiorQueZero(erros, ofertaDTO.MaximoAplicacao, ofertaDTO);
         ValidarSeMinimoResgateMaiorQueZero(erros, ofertaDTO.MinimoResgate);
         ValidarHorarioDeNegociacao(erros, ofertaDTO.HorarioFimNegociacao, ofertaDTO);
+        ValidarDataCarencia(erros, ofertaDTO.DataCarencia, ofertaDTO);
         ValidarIndexador(erros, ofertaDTO.Indexador ?? string.Empty);
         ValidarNomeEmissor(erros, ofertaDTO.NomeEmissor ?? string.Empty);
         ValidarNomeTitulo(erros, ofertaDTO.NomeTitulo ?? string.Empty);
         ValidarRisco(erros, ofertaDTO.Risco ?? string.Empty);
         ValidarDescricao(erros, ofertaDTO.Descricao ?? string.Empty);
-        if(erros.Count > 0)
+
+        if (erros.Count > 0)
         {
             throw new ErrosDeValidacaoException(erros);
         }
     }
-    
+
     private static void ValidarIndexador(List<ErrosDeValidacaoResposta> erros, string indexador)
     {
         if (string.IsNullOrEmpty(indexador))
@@ -99,7 +103,7 @@ public class ValidarOferta
         }
     }
 
-    private static void ValidarHorarioDeNegociacao(List<ErrosDeValidacaoResposta> erros, DateTime horarioFimNegociacao, OfertaDTOPost ofertaDTO)
+    private static void ValidarHorarioDeNegociacao(List<ErrosDeValidacaoResposta> erros, DateTime horarioFimNegociacao, OfertaDTOPut ofertaDTO)
     {
         if(horarioFimNegociacao <= ofertaDTO.HorarioInicioNegociacao)
         {
@@ -107,6 +111,17 @@ public class ValidarOferta
             {
                 Campo = "HorarioFimNegociacao",
                 Mensagem = "Não pode ser menor ou igual a HorarioInicioNegociacao"
+            });
+        }
+    }
+    private static void ValidarDataCarencia(List<ErrosDeValidacaoResposta> erros, DateTime dataCarencia, OfertaDTOPut ofertaDTO)
+    {
+        if(dataCarencia >= ofertaDTO.DataVencimento)
+        {
+            erros.Add(new ErrosDeValidacaoResposta()
+            {
+                Campo = "DataVencimento",
+                Mensagem = "Não pode ser menor ou igual a DataCarencia"
             });
         }
     }
@@ -122,7 +137,7 @@ public class ValidarOferta
             });
         }
     }
-    private static void ValidarSeMaximoResgateMaiorQueZero(List<ErrosDeValidacaoResposta> erros, decimal maximoResgate, OfertaDTOPost ofertaDTO)
+    private static void ValidarSeMaximoResgateMaiorQueZero(List<ErrosDeValidacaoResposta> erros, decimal maximoResgate, OfertaDTOPut ofertaDTO)
     {
         if(ValidarSeMenorQueZero(maximoResgate))
         {
@@ -153,7 +168,7 @@ public class ValidarOferta
             });
         }
     }
-    private static void ValidarSeMaximoAplicacaoMaiorQueZero(List<ErrosDeValidacaoResposta> erros, decimal maximoAplicacao, OfertaDTOPost ofertaDTO)
+    private static void ValidarSeMaximoAplicacaoMaiorQueZero(List<ErrosDeValidacaoResposta> erros, decimal maximoAplicacao, OfertaDTOPut ofertaDTO)
     {
         if(ValidarSeMenorQueZero(maximoAplicacao))
         {

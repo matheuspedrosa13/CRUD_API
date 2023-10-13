@@ -27,7 +27,7 @@ public class ConverterDTOPutParaDAO
             Indexador = ofertaPut.Indexador,
             NomeEmissor = ofertaPut.NomeEmissor,
             NomeTitulo = ofertaPut.NomeTitulo,
-            Risco = ConverterStringParaEnumOfertasRisco.ConverterStringParaEnum(ofertaPut.Risco),
+            Risco = ConverterStringParaEnumOfertasRisco.ConverterStringParaEnum(ofertaPut.Risco!),
             GarantidoPeloFGC = ofertaPut.GarantidoPeloFGC,
             Descricao = ofertaPut.Descricao,
             DataCriacao = ofertaPassada.DataCriacao,

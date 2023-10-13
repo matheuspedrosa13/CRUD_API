@@ -77,11 +77,28 @@ public class OfertaController : ControllerBase
     }
 
     [HttpPut("/{id}")]
-    public IActionResult UpdateExistentOffer(int id,[FromBody] OfertaDTOPut ofertaDTO)
+    public IActionResult AtualizarOferta(int id, [FromBody] OfertaDTOPut ofertaDTO)
     {
-        _ofertaService.AtualizarOferta(id, ofertaDTO);
-        return Ok("aa");
+        try
+        {
+            _ofertaService.AtualizarOferta(id, ofertaDTO);
+            return Ok("Oferta atualizada com sucesso!");
+        }
+        catch (ErrosDeValidacaoException ex)
+        {
+            var response = new
+            {
+                Mensagem = "Erro de validação",
+                Erros = ex.Erros
+            };
+            return BadRequest(response);
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Erro interno do servidor");
+        }
     }
+
 
 
 
