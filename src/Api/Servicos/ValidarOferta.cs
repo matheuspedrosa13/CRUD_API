@@ -109,6 +109,14 @@ public class ValidarOferta
                 Mensagem = "Não pode ser menor ou igual a HorarioInicioNegociacao"
             });
         }
+        if (horarioFimNegociacao <= DateTime.Now)
+        {
+            erros.Add(new ErrosDeValidacaoResposta()
+            {
+                Campo = "HorarioFimNegociacao",
+                Mensagem = "Deve ser uma data futura."
+            });
+        }
     }
 
     private static void ValidarSeEstoqueMaiorQueZero(List<ErrosDeValidacaoResposta> erros, decimal estoque)

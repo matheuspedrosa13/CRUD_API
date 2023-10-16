@@ -102,10 +102,50 @@ public class OfertaController : ControllerBase
 
 
 
-    [HttpDelete("/{id}")]
-    public ActionResult DesaprovarOferta(int id)
+    [HttpPatch("/desativar/{id}")]
+    public IActionResult DesativarOferta(int id)
     {
-        _ofertaService.RemoverOferta(id);
-        return Ok("Funfou");
+        try
+        {
+            _ofertaService.DesativarOferta(id);
+            return Ok("Oferta desativada com sucesso!");
+        }
+        catch (ErrosDeValidacaoException ex)
+        {
+            var response = new
+            {
+                Mensagem = "Erro de validação",
+                Erros = ex.Erros
+            };
+            return BadRequest(response);
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Erro interno do servidor");
+        }
+    }    
+    
+    [HttpPatch("/ativar/{id}")]
+    public IActionResult AtivarOferta(int id)
+    {
+        try
+        {
+            _ofertaService.AtivarOferta(id);
+            return Ok("Oferta ativada com sucesso!");
+        }
+        catch (ErrosDeValidacaoException ex)
+        {
+            var response = new
+            {
+                Mensagem = "Erro de validação",
+                Erros = ex.Erros
+            };
+            return BadRequest(response);
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Erro interno do servidor");
+        }
     }
+
 }

@@ -113,7 +113,16 @@ public class ValidarOfertaAtualizar
                 Mensagem = "Não pode ser menor ou igual a HorarioInicioNegociacao"
             });
         }
+        if (horarioFimNegociacao <= DateTime.Now)
+        {
+            erros.Add(new ErrosDeValidacaoResposta()
+            {
+                Campo = "HorarioFimNegociacao",
+                Mensagem = "Deve ser uma data futura."
+            });
+        }
     }
+
     private static void ValidarDataCarencia(List<ErrosDeValidacaoResposta> erros, DateTime dataCarencia, OfertaDTOPut ofertaDTO)
     {
         if(dataCarencia >= ofertaDTO.DataVencimento)

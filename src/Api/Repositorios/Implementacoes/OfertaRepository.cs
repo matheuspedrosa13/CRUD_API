@@ -42,12 +42,34 @@ public class OfertaRepository  : IOfertaRepository
     }
 
 
-    public void RemoverOferta(int id)
+    public bool DesativarOferta(int id)
     {
         OfertaDAO ofertaExistente = _ofertas.FirstOrDefault(o => o.Id == id)!;
+
         if (ofertaExistente != null)
         {
+            if(ofertaExistente.Aprovada == false){
+                return false;
+            }
             ofertaExistente.Aprovada = false;
+            return true;
         }
+        return false;
     }
+
+    public bool AtivarOferta(int id)
+    {
+        OfertaDAO ofertaExistente = _ofertas.FirstOrDefault(o => o.Id == id)!;
+
+        if (ofertaExistente != null)
+        {
+            if(ofertaExistente.Aprovada == true){
+                return false;
+            }
+            ofertaExistente.Aprovada = true;
+            return true;
+        }
+        return false;
+    }
+
 }

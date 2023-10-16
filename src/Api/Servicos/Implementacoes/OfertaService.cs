@@ -32,6 +32,7 @@ public class OfertaService : IOfertaService
         OfertaDAO ofertaDAO = ConverterDTOemDAO.Converter(oferta);
         _ofertaRepository.AdicionarOferta(ofertaDAO);
     }
+
     public bool AtualizarOferta(int id, OfertaDTOPut ofertaDto)
     {
         ValidarOfertaAtualizar.ValidarComExcecao(ofertaDto);
@@ -41,9 +42,14 @@ public class OfertaService : IOfertaService
     }
 
 
-    public void RemoverOferta(int id)
+    public bool DesativarOferta(int id)
     {
-        _ofertaRepository.RemoverOferta(id);
+        return _ofertaRepository.DesativarOferta(id);
+    }    
+    
+    public bool AtivarOferta(int id)
+    {
+        return _ofertaRepository.AtivarOferta(id);
     }
 
     public List<OfertaDTOGet> ofertaVerificada(List<OfertaDAO> todasOfertasDAO, ParametrosBuscaOferta parametrosBuscaOferta){
