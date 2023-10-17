@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0lL5M1yugcdXOBcgusp3+uv5Cn9zpbqY3EdcH1mz2mKQmjXGNzStpdc3576LOLhI/LoZqxssG7umjQpv9AfiSw==",
+  "dgSpecHash": "dzG/1gtngyHrDw2p3ZJ9j3gQEvAd4hqEJ28nUECKmE+esxA6Lix69dmxteJdbD6niMlVutA2CtjUeZ0bjfnVJQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\t60811\\Desktop\\CSHARP\\crudofertasreal\\CRUD_API\\crud-ofertas.csproj",
+  "projectFilePath": "C:\\Users\\t60811\\Desktop\\CSHARP\\crudofertasreal\\real_final\\CRUD_API\\crud-ofertas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\t60811\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.11\\microsoft.aspnetcore.openapi.7.0.11.nupkg.sha512",
     "C:\\Users\\t60811\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
