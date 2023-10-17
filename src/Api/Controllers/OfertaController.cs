@@ -7,6 +7,7 @@ using CrudOfertas.Api.Servicos.Interfaces;
 using CrudOfertas.Api.Servicos.Conversores;
 using CrudOfertas.Api.Controllers.Requisicoes;
 using CrudOfertas.Api.Excecoes;
+using CrudOfertas.Api.Controllers.Respostas;
 
 namespace CrudOfertas.Api.Controllers;
 
@@ -102,45 +103,74 @@ public class OfertaController : ControllerBase
 
 
 
-    [HttpPatch("/desativar/{id}")]
+
+
+   [HttpPatch("/desativar/{id}")]
     public IActionResult DesativarOferta(int id)
     {
+        List<ErrosDeValidacaoResposta> erros = new List<ErrosDeValidacaoResposta>();
         try
         {
-            _ofertaService.DesativarOferta(id);
-            return Ok("Oferta desativada com sucesso!");
+            if (_ofertaService.DesativarOferta(id))
+            {
+                return Ok("Oferta desativada com sucesso!");
+            }
+            else
+            {
+
+                erros.Add(new ErrosDeValidacaoResposta()
+                {
+                    Campo = "Desativar",
+                    Mensagem = "Oferta não encontrada ou já desativada"
+                });
+                return BadRequest(erros);
+            }
         }
         catch (ErrosDeValidacaoException ex)
         {
-            var response = new
+            erros.Add(new ErrosDeValidacaoResposta()
             {
-                Mensagem = "Erro de validação",
-                Erros = ex.Erros
-            };
-            return BadRequest(response);
+                Campo = "Erro de validação",
+                Mensagem = ex.Message
+            });
+            return BadRequest(erros);
         }
         catch (Exception)
         {
             return StatusCode(500, "Erro interno do servidor");
         }
-    }    
+    }
+
     
     [HttpPatch("/ativar/{id}")]
     public IActionResult AtivarOferta(int id)
     {
+        List<ErrosDeValidacaoResposta> erros = new List<ErrosDeValidacaoResposta>();
+
         try
         {
-            _ofertaService.AtivarOferta(id);
-            return Ok("Oferta ativada com sucesso!");
+            if (_ofertaService.DesativarOferta(id))
+            {
+                return Ok("Oferta ativada com sucesso!");
+            }
+            else
+            {
+                erros.Add(new ErrosDeValidacaoResposta()
+                {
+                    Campo = "Ativar",
+                    Mensagem = "Oferta não encontrada ou já ativada"
+                });
+                return BadRequest(erros);
+            }
         }
         catch (ErrosDeValidacaoException ex)
         {
-            var response = new
+            erros.Add(new ErrosDeValidacaoResposta()
             {
-                Mensagem = "Erro de validação",
-                Erros = ex.Erros
-            };
-            return BadRequest(response);
+                Campo = "Erro de validação",
+                Mensagem = ex.Message
+            });
+            return BadRequest(erros);
         }
         catch (Exception)
         {
