@@ -52,7 +52,8 @@ public class OfertaService : IOfertaService
         return _ofertaRepository.AtivarOferta(id);
     }
 
-    public List<OfertaDTOGet> ofertaVerificada(List<OfertaDAO> todasOfertasDAO, ParametrosBuscaOferta parametrosBuscaOferta){
+    public List<OfertaDTOGet> ofertaVerificada(List<OfertaDAO> todasOfertasDAO, ParametrosBuscaOferta parametrosBuscaOferta)
+    {
         if (!string.IsNullOrWhiteSpace(parametrosBuscaOferta.Nome))
         {
             todasOfertasDAO = todasOfertasDAO
@@ -67,6 +68,12 @@ public class OfertaService : IOfertaService
                 .ToList();
         }
 
+        if (parametrosBuscaOferta.Aprovada.HasValue)
+        {
+            todasOfertasDAO = todasOfertasDAO
+                .Where(o => o.Aprovada == parametrosBuscaOferta.Aprovada!.Value)
+                .ToList();
+        }
         var todasOfertasDTO = todasOfertasDAO.Select(ofertaDAO => ConverterDAOemDTO.Converter(ofertaDAO)).ToList();
 
         if (todasOfertasDTO.Count == 0)
